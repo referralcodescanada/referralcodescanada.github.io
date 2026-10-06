@@ -1,14 +1,17 @@
 {
-  "name": "referralcodescanada.github.io",
+  "name": "referral-codes-canada",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Static generator for Canadian referral-code pages hosted on GitHub Pages.",
+  "description": "Static generator for the Referral Codes Canada network (GitHub Pages). Shared engine — see docs/.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "serve": "node scripts/serve.mjs",
     "dev": "node scripts/build.mjs && node scripts/serve.mjs",
     "og": "node scripts/og.mjs",
+    "check": "node scripts/check-live.mjs",
+    "sync": "node scripts/sync-engine.mjs",
+    "new-product": "node scripts/new-product.mjs",
     "new-site": "node scripts/new-site.mjs",
     "indexnow": "node scripts/indexnow.mjs"
   },
