@@ -1,0 +1,83 @@
+{
+  "slug": "wealthsimple",
+  "name": "Wealthsimple",
+  "code": "6QL89Q",
+  "url": "https://wealthsimple.com/invite/6QL89Q",
+  "bonus": {
+    "amount": 25,
+    "currency": "CAD"
+  },
+  "minimumDeposit": {
+    "amount": 100,
+    "currency": "CAD"
+  },
+  "lastVerified": "2026-10-06",
+  "accent": "#0E7C4A",
+  "icon": "https://referralcodescanada.github.io/wealthsimple/assets/icon.svg",
+  "sitemap": "https://referralcodescanada.github.io/wealthsimple/sitemap.xml",
+  "llms": "https://referralcodescanada.github.io/wealthsimple/llms.txt",
+  "llmsFull": "https://referralcodescanada.github.io/wealthsimple/llms-full.txt",
+  "defaultLocale": "en",
+  "locales": {
+    "en": {
+      "lang": "en-CA",
+      "url": "https://referralcodescanada.github.io/wealthsimple/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/index.md",
+      "title": "Wealthsimple Referral Code 2026: 6QL89Q — Get a $25 Cash Bonus",
+      "summary": "$25 cash bonus when you deposit $100 or more.",
+      "terms": "https://help.wealthsimple.com/hc/en-ca/articles/19646567019035-Wealthsimple-Referral-Bonus-Promotion-2026"
+    },
+    "fr": {
+      "lang": "fr-CA",
+      "url": "https://referralcodescanada.github.io/wealthsimple/fr/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/fr/index.md",
+      "title": "Code de parrainage Wealthsimple 2026 : 6QL89Q — Prime de 25 $",
+      "summary": "Prime de 25 $ en argent en déposant 100 $ ou plus.",
+      "terms": "https://help.wealthsimple.com/hc/fr-ca/articles/19646567019035"
+    }
+  },
+  "guides": [
+    {
+      "lang": "en-CA",
+      "loc": "en",
+      "title": "Wealthsimple referral bonus not received? Check these 7 things",
+      "url": "https://referralcodescanada.github.io/wealthsimple/guides/referral-bonus-not-received/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/guides/referral-bonus-not-received/index.md"
+    },
+    {
+      "lang": "fr-CA",
+      "loc": "fr",
+      "title": "Prime de parrainage Wealthsimple non reçue? Vérifiez ces 7 points",
+      "url": "https://referralcodescanada.github.io/wealthsimple/fr/guides/prime-de-parrainage-non-recue/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/fr/guides/prime-de-parrainage-non-recue/index.md"
+    },
+    {
+      "lang": "en-CA",
+      "loc": "en",
+      "title": "How to find your Wealthsimple referral code (and earn $25 per friend)",
+      "url": "https://referralcodescanada.github.io/wealthsimple/guides/find-your-referral-code/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/guides/find-your-referral-code/index.md"
+    },
+    {
+      "lang": "fr-CA",
+      "loc": "fr",
+      "title": "Comment trouver votre code de parrainage Wealthsimple (et gagner 25 $ par ami)",
+      "url": "https://referralcodescanada.github.io/wealthsimple/fr/guides/trouver-son-code-de-parrainage/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/fr/guides/trouver-son-code-de-parrainage/index.md"
+    },
+    {
+      "lang": "en-CA",
+      "loc": "en",
+      "title": "How to transfer your TFSA, RRSP or investment account to Wealthsimple",
+      "url": "https://referralcodescanada.github.io/wealthsimple/guides/transfer-account-to-wealthsimple/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/guides/transfer-account-to-wealthsimple/index.md"
+    },
+    {
+      "lang": "fr-CA",
+      "loc": "fr",
+      "title": "Comment transférer votre CELI, REER ou compte de placement vers Wealthsimple",
+      "url": "https://referralcodescanada.github.io/wealthsimple/fr/guides/transferer-compte-vers-wealthsimple/",
+      "markdown": "https://referralcodescanada.github.io/wealthsimple/fr/guides/transferer-compte-vers-wealthsimple/index.md"
+    }
+  ]
+}
