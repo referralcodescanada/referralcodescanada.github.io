@@ -1,0 +1,12 @@
+---
+// Highlighted remark (styles in global.css: also used inside guide articles).
+import type { IconName } from '../../lib/icons.ts';
+import Icon from './Icon.astro';
+import Md from './Md.astro';
+interface Props {
+  text: string;
+  icon?: IconName;
+}
+const { text, icon = 'info' } = Astro.props;
+---
+<p class="note"><Icon name={icon} /><span><Md text={text} /></span></p>

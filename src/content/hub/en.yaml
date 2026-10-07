@@ -1,0 +1,43 @@
+# Home page — English. Placeholders: {name} {count} {year} {month}. Schema: src/lib/schema.ts
+seo:
+  title: Canadian Referral Codes {year} — Verified Sign-Up Bonuses
+  description: Working Canadian referral codes and invite links with verified sign-up bonuses. Step-by-step guides, eligibility rules and FAQs, updated regularly.
+  keywords:
+    - referral code Canada
+    - sign up bonus Canada
+    - invite code
+    - promo code Canada
+hero:
+  eyebrow: Updated {month}
+  h1: Canadian referral codes that ==actually work==
+  lead: Real referral codes from a real Canadian user. Each page gives you the code, where to enter it, the exact bonus, the rules and the steps — nothing else.
+og:
+  eyebrow: VERIFIED SIGN-UP BONUSES
+  line1: Canadian
+  line2: referral codes
+  badgeBottom: bonus
+listTitle: Referral codes
+listIntro: Pick a service to see the code, the bonus and how to claim it.
+about:
+  title: How this site works
+  items:
+    - icon: shield
+      title: Personal codes
+      text: Every code is issued by the company to a real client. When you use one, you get the new-client bonus and the referrer gets one too — that’s how referral programs work.
+    - icon: clock
+      title: Checked against official terms
+      text: Bonus amounts, deposits and deadlines are summarized from each company’s public referral terms, with the verification date on every page.
+    - icon: globe
+      title: English & French
+      text: Every guide is available in English and in French for Quebec and the rest of Canada.
+faq:
+  title: Questions
+  items:
+    - q: Are these referral codes free to use?
+      a: Yes. Using a referral code never costs you anything — it only unlocks the sign-up bonus offered by the company.
+    - q: Is this site affiliated with the companies listed?
+      a: No. {name} is an independent site. The codes are personal referral codes; brand names belong to their respective owners.
+    - q: How often are the codes checked?
+      a: Each page shows its last verification date. Codes and bonuses are re-checked against the official terms regularly.
+footer:
+  disclaimer: "Independent site, not affiliated with or endorsed by the companies mentioned. Brand names are trademarks of their respective owners. Pages share personal referral codes: both the new client and the referrer may receive a bonus. Not financial advice."

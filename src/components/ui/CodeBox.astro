@@ -1,0 +1,28 @@
+---
+// The referral code in a dashed box, with its copy button. `inverse` = on a dark (brand) background.
+import type { UiStrings } from '../../lib/i18n.ts';
+import CopyButton from './CopyButton.astro';
+interface Props {
+  code: string;
+  ui: UiStrings;
+  inverse?: boolean;
+  small?: boolean;
+  /** The hero code box: the mobile sticky bar appears once it has scrolled out of view. */
+  anchor?: boolean;
+}
+const { code, ui, inverse = false, small = false, anchor = false } = Astro.props;
+---
+<div class:list={['codebox', { 'codebox--inverse': inverse }]} data-hero-code={anchor ? '' : undefined}>
+  <div class="codebox__txt"><span class="codebox__label">{ui.codeLabel}</span><code class="codebox__code">{code}</code></div>
+  <CopyButton code={code} ui={ui} variant={small ? 'sm' : 'default'} />
+</div>
+
+<style is:global>
+  .codebox{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:500px;margin:30px 0 20px;padding:12px 12px 12px 24px;background:var(--surface);border:2px dashed color-mix(in srgb,var(--accent) 70%,var(--line));border-radius:calc(var(--radius) + 4px);box-shadow:0 20px 40px -28px color-mix(in srgb,var(--ink) 40%,transparent)}
+  .codebox__txt{display:flex;flex-direction:column;min-width:0}
+  .codebox__label{font-size:.72rem;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .codebox__code{font:700 clamp(1.7rem,4.6vw,2.35rem)/1.15 var(--font-mono);letter-spacing:.16em;color:var(--ink);background:none;padding:0;-webkit-user-select:all;user-select:all}
+  .codebox--inverse{margin:0;max-width:none;background:color-mix(in srgb,var(--brand-ink) 8%,transparent);border-color:color-mix(in srgb,var(--brand-ink) 35%,transparent);box-shadow:none}
+  .codebox--inverse .codebox__code{color:var(--brand-ink)}
+  .codebox--inverse .codebox__label{color:var(--brand-ink);opacity:.7}
+</style>

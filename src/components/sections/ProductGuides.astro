@@ -1,0 +1,24 @@
+---
+// Cards of the product's guides.
+import { pickLocale, type Product, type ProductLocale } from '../../lib/model.ts';
+import GuideCard from '../ui/GuideCard.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Props {
+  product: Product;
+  L: ProductLocale;
+  alt: boolean;
+}
+const { product: p, L, alt } = Astro.props;
+const { ui } = L;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="guides" aria-labelledby="guides-h">
+  <div class="wrap">
+    <SectionHead id="guides-h" kicker={ui.guidesKicker} title={ui.guidesTitle} intro={ui.guidesIntro} />
+    <ul class="guides">
+      {p.guides.map((g) => {
+        const G = pickLocale(g.locales, L.loc, g.def);
+        return <GuideCard href={G.href} icon={g.icon} title={G.c.title} text={G.c.card || G.c.lead} more={ui.readGuide} />;
+      })}
+    </ul>
+  </div>
+</section>

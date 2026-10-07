@@ -1,0 +1,30 @@
+---
+// "The rules, in plain English": eligibility summary from the official terms.
+import type { ProductLocale } from '../../lib/model.ts';
+import Icon from '../ui/Icon.astro';
+import Md from '../ui/Md.astro';
+import Note from '../ui/Note.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Props {
+  L: ProductLocale;
+  alt: boolean;
+}
+const { L, alt } = Astro.props;
+const r = L.c.rules;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="rules" aria-labelledby="rules-h">
+  <div class="wrap split">
+    <SectionHead id="rules-h" kicker={r.kicker} title={r.title} intro={r.intro} />
+    <div>
+      <ul class="rules card">{r.items.map((it) => <li><Icon name="check" /><span><Md text={it} /></span></li>)}</ul>
+      {r.note && <Note text={r.note} icon="clock" />}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .rules{list-style:none;margin:0;padding:8px 24px}
+  .rules li{display:flex;gap:14px;padding:15px 0;border-top:1px solid var(--line)}
+  .rules li:first-child{border-top:0}
+  .rules .i{margin-top:4px;padding:3px;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent)}
+</style>

@@ -1,0 +1,155 @@
+# wealthsimple — textes en français (canadien)
+# Placeholders: {brand} {code} {codeSpelled} {link} {linkDisplay} {bonus} {bonusCents} {minDeposit}
+#   {minDepositCents} {balanceDemo} {year} {verifiedDate} {month} + every key of `links` below.
+# Inline formatting: **bold** *italic* `code` ==highlight== [text](url). Schema: src/lib/schema.ts
+links:
+  officialUrl: https://www.wealthsimple.com/fr-ca
+  termsUrl: https://help.wealthsimple.com/hc/fr-ca/articles/19646567019035
+  transferUrl: https://help.wealthsimple.com/hc/fr-ca/articles/1500003503661
+  promotionsUrl: https://www.wealthsimple.com/fr-ca/promotions
+seo:
+  title: "Code de parrainage Wealthsimple {year} : {code} — Prime de {bonus}"
+  description: "Code de parrainage Wealthsimple {code} : obtenez {bonus} en argent en déposant {minDeposit} ou plus. Lien, étapes, règles et FAQ. Vérifié en {month}."
+  keywords:
+    - code de parrainage Wealthsimple
+    - code de référence Wealthsimple
+    - code promo Wealthsimple
+    - code d’invitation Wealthsimple
+    - prime Wealthsimple
+    - Wealthsimple 25 $
+    - "{code}"
+  imageAlt: Code de parrainage Wealthsimple {code} — prime de {bonus}
+og:
+  eyebrow: CODE VALIDE
+  line1: Code de parrainage
+  line2: Wealthsimple
+  badgeBottom: en prime
+hub:
+  summary: Prime de {bonus} en argent en déposant {minDeposit} ou plus.
+hero:
+  eyebrow: Code valide · vérifié le {verifiedDate}
+  h1: "Code de parrainage Wealthsimple : =={code}=="
+  lead: Entrez **{code}** à l’ouverture de votre compte Wealthsimple — ou utilisez simplement mon lien d’invitation — et recevez une **prime de {bonus} en argent** dès que vous déposez {minDeposit} ou plus. Ça prend environ cinq minutes.
+  cta: M’inscrire avec le lien
+  ctaSecondary: Comment ça marche
+  note: Le lien applique le code automatiquement. Vous préférez l’entrer vous-même? Utilisez **{code}**.
+  chips:
+    - Prime de {bonus} en argent
+    - Dépôt minimum de {minDeposit}
+    - Versée en général en 24 h
+mockup:
+  account: Compte chèque
+  balanceLabel: Solde
+  balance: "{balanceDemo}"
+  notifTitle: Prime de parrainage
+  notifBody: Code {code} appliqué
+  amount: +{bonusCents}
+  rows:
+    - label: Code de parrainage
+      value: "{code} ✓"
+    - label: Premier dépôt
+      value: "{minDepositCents}"
+    - label: Statut de la prime
+      value: Versée
+  sticker: "{bonus}"
+  stickerSub: de prime
+facts:
+  kicker: En bref
+  title: Réponse rapide
+  intro: Le **code de parrainage Wealthsimple est {code}**. Voici tout ce qu’il faut savoir sur la prime d’inscription de {bonus}, en un coup d’œil.
+  items:
+    - label: Code de parrainage
+      value: "**{code}** ({codeSpelled})"
+    - label: Lien d’invitation
+      value: "[{linkDisplay}]({link})"
+    - label: Votre prime
+      value: "{bonus} en argent, versés dans votre compte chèque Wealthsimple"
+    - label: Dépôt minimum
+      value: "{minDeposit} provenant d’une banque ou institution externe, dans les 30 jours"
+    - label: Délai pour ajouter le code
+      value: Dans les 7 jours suivant le financement de votre compte
+    - label: Versement
+      value: En général dans les 24 heures suivant votre dépôt admissible
+    - label: Qui peut l’utiliser
+      value: Nouveaux clients Wealthsimple, résidents légaux du Canada, majeurs
+    - label: Dernière vérification
+      value: "{verifiedDate}"
+steps:
+  kicker: Étape par étape
+  title: Comment obtenir votre prime Wealthsimple de {bonus}
+  intro: Quatre étapes, environ cinq minutes. Le lien d’invitation applique le code pour vous — le code sert de plan B.
+  totalTime: PT10M
+  items:
+    - title: Ouvrez mon lien d’invitation
+      text: Touchez [{linkDisplay}]({link}) sur votre téléphone ou ordinateur. Votre nouveau compte est automatiquement associé au code **{code}**.
+    - title: Créez votre compte
+      text: Inscrivez-vous dans l’application Wealthsimple ou sur le Web et vérifiez votre identité avec une pièce d’identité avec photo émise par le gouvernement.
+    - title: Confirmez le code
+      text: Vous n’avez pas utilisé le lien? Touchez l’**icône cadeau** → *Inviter des amis* → *Entrer un code de parrainage* et tapez **{code}**, dans les 7 jours suivant le financement.
+    - title: Déposez {minDeposit} ou plus
+      text: Approvisionnez un compte admissible d’au moins {minDeposit} depuis une banque externe dans les 30 jours. Vos {bonus} arrivent en général dans le compte chèque en 24 heures.
+existing:
+  kicker: Déjà inscrit?
+  title: Inscrit sans code? Ajoutez-le maintenant
+  intro: Vous pouvez encore appliquer **{code}** jusqu’à **7 jours après votre premier dépôt**. Voici exactement où l’entrer.
+  cards:
+    - icon: phone
+      title: Dans l’application Wealthsimple
+      steps:
+        - Ouvrez l’application et touchez l’**icône cadeau** en haut à droite de l’accueil.
+        - Sélectionnez l’onglet **Inviter des amis**.
+        - Touchez **Entrer un code de parrainage** et tapez **{code}**.
+    - icon: monitor
+      title: Sur le Web
+      steps:
+        - Connectez-vous à votre compte Wealthsimple sur un ordinateur.
+        - Cliquez sur l’**icône cadeau** en bas à gauche de l’accueil.
+        - Repérez l’invite pour entrer un code de parrainage et soumettez **{code}**.
+  note: Le délai de 7 jours est dépassé? Contactez le soutien Wealthsimple — il pourrait associer le parrainage manuellement.
+rules:
+  kicker: Les petits caractères
+  title: Les règles, en clair
+  intro: Un résumé des conditions de la prime de parrainage Wealthsimple. Les [conditions officielles]({termsUrl}) ont toujours préséance.
+  items:
+    - Vous devez être un **nouveau client Wealthsimple**, résident légal du Canada et avoir l’âge de la majorité dans votre province ou territoire.
+    - Déposez au moins **{minDeposit}** depuis un compte bancaire ou une institution financière externe dans les **30 jours** suivant l’association du parrainage.
+    - Les virements entre clients Wealthsimple, les primes Wealthsimple et les autres transferts internes **ne comptent pas**.
+    - Vous devez être le **titulaire principal** du compte approvisionné.
+    - La prime est versée dans votre **compte chèque** Wealthsimple — ouvrez-en un (c’est gratuit) pour la recevoir.
+    - Un seul parrain par nouveau client, et vous ne pouvez pas parrainer la personne qui vous a parrainé.
+    - Les conditions prévoient une **période de détention de 180 jours** après le versement de la prime — lisez-les avant de retirer des fonds.
+  note: Résumé des conditions de la promotion de parrainage Wealthsimple au {verifiedDate}. Les promotions peuvent changer en tout temps.
+faq:
+  kicker: FAQ
+  title: Code de parrainage Wealthsimple — FAQ
+  items:
+    - q: Quel est le code de parrainage Wealthsimple?
+      a: Le code de parrainage Wealthsimple est **{code}**. Entrez-le à l’ouverture de votre compte, ou inscrivez-vous avec [{linkDisplay}]({link}) et il s’applique automatiquement. Vous recevez une prime de {bonus} en argent dès que vous déposez {minDeposit} ou plus.
+    - q: Combien vaut la prime de parrainage Wealthsimple en {year}?
+      a: "**{bonus} en argent** pour vous, et {bonus} pour la personne qui vous a parrainé. La prime est versée dans votre compte chèque Wealthsimple, en général dans les 24 heures suivant votre dépôt admissible."
+    - q: Existe-t-il un code promo Wealthsimple?
+      a: "Pour les nouveaux clients, le code de parrainage **est** le code promo d’inscription : utilisez **{code}** pour obtenir {bonus}. Wealthsimple propose aussi des offres à durée limitée (comme des bonifications de transfert) sur sa [page de promotions officielle]({promotionsUrl}) — consultez les conditions de chacune."
+    - q: Puis-je ajouter un code de parrainage après mon inscription?
+      a: Oui, dans les **7 jours suivant le financement** de votre compte. Dans l’application, touchez l’icône cadeau → *Inviter des amis* → *Entrer un code de parrainage* (sur le Web, cliquez sur l’icône cadeau de l’accueil) et tapez **{code}**.
+    - q: Un transfert de compte depuis une autre banque compte-t-il pour la prime?
+      a: "L’argent provenant d’une autre institution financière compte comme financement externe : un transfert peut donc être admissible s’il arrive dans le délai de 30 jours. Un transfert peut toutefois prendre quelques semaines — un dépôt ordinaire de {minDeposit} depuis votre banque est le moyen le plus rapide de déclencher la prime de {bonus}. Pour le fonctionnement des transferts, voir le [guide de transfert de Wealthsimple]({transferUrl})."
+    - q: Quel est le dépôt minimum pour obtenir la prime?
+      a: "**{minDeposit}**, provenant d’un compte bancaire ou d’une institution financière externe, dans les 30 jours suivant l’association du parrainage. Les virements d’autres clients Wealthsimple et les primes internes ne comptent pas."
+    - q: Quels comptes Wealthsimple sont admissibles?
+      a: Les comptes de placement autogérés (incluant CELI, REER, CELIAPP et non enregistrés), Crypto, Placements gérés et le compte chèque sont tous admissibles.
+    - q: Quand vais-je recevoir mes {bonus}?
+      a: En général dans les 24 heures suivant votre dépôt admissible, directement dans votre compte chèque Wealthsimple. Pas encore de compte chèque? Ouvrez-en un gratuitement — vous avez 90 jours avant que la prime expire.
+    - q: Le code de parrainage Wealthsimple fonctionne-t-il au Québec?
+      a: Oui. Le programme est ouvert aux résidents légaux de toutes les provinces et de tous les territoires canadiens, y compris le Québec, qui ont atteint l’âge de la majorité (18 ou 19 ans selon la province).
+    - q: Puis-je utiliser plus d’un code de parrainage?
+      a: "Non. Chaque nouveau client ne peut être associé qu’à un seul parrain : choisissez un code et gardez-le."
+    - q: J’ai déjà un compte Wealthsimple. Puis-je quand même obtenir la prime?
+      a: La prime est réservée aux nouveaux clients. Si vous avez ouvert votre compte récemment, vous pouvez encore ajouter un code dans les 7 jours suivant votre premier dépôt. Les clients existants gagnent en partageant leur propre code.
+    - q: Le code {code} est-il légitime et toujours valide?
+      a: Oui. **{code}** est un code de parrainage personnel émis par Wealthsimple à un vrai client, vérifié le {verifiedDate}. Ce site n’est pas affilié à Wealthsimple; quand vous utilisez le code, le parrain reçoit aussi {bonus} — c’est le principe du programme.
+finalCta:
+  title: Prêt? Vos {bonus} vous attendent.
+  text: Copiez **{code}** ou utilisez le lien d’invitation — la prime est la même dans les deux cas.
+  button: Ouvrir Wealthsimple avec mon lien
+footer:
+  disclaimer: "Page indépendante, non affiliée à Wealthsimple et non approuvée ni commanditée par Wealthsimple. Wealthsimple est une marque de commerce de son propriétaire. Cette page partage un code de parrainage personnel : en l’utilisant, vous et le parrain recevez une prime. Ceci n’est pas un conseil financier. Offre résumée à partir des conditions publiques de Wealthsimple — consultez toujours les [conditions officielles]({termsUrl})."

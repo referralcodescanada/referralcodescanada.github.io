@@ -1,0 +1,28 @@
+---
+// Home page top: title + the 3D logo coin.
+import { SITE } from '../../config/site.ts';
+import type { HubLocale } from '../../lib/model.ts';
+import Coin from '../ui/Coin/Coin.astro';
+import Md from '../ui/Md.astro';
+interface Props {
+  H: HubLocale;
+  logoSrc: string;
+}
+const { H, logoSrc } = Astro.props;
+const { c } = H;
+---
+<section class="hero hero--hub" aria-labelledby="h1">
+  <div class="wrap hub-hero">
+    <div>
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span><Md text={c.hero.eyebrow} /></p>
+      <h1 id="h1"><Md text={c.hero.h1} /></h1>
+      <p class="lead"><Md text={c.hero.lead} /></p>
+    </div>
+    <Coin src={logoSrc} alt={SITE.name} legend={SITE.coin} />
+  </div>
+</section>
+
+<style is:global>
+  .hub-hero{display:grid;gap:32px;align-items:center}
+  @media (min-width:900px){.hub-hero{grid-template-columns:minmax(0,1fr) 300px}}
+</style>

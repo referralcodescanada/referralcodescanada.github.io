@@ -1,0 +1,91 @@
+---
+// A guide (article) of a product, in one language.
+import GuideArticle from '../components/sections/GuideArticle.astro';
+import ProductFooter from '../components/sections/ProductFooter.astro';
+import GuideCard from '../components/ui/GuideCard.astro';
+import Md from '../components/ui/Md.astro';
+import StickyBar from '../components/ui/StickyBar.astro';
+import { hasAsset, ogImage } from '../lib/assets.ts';
+import { plain } from '../lib/format.ts';
+import type { Loc } from '../lib/i18n.ts';
+import { guideGraph } from '../lib/jsonld.ts';
+import { URLS, pickLocale, siblingCards, type Model, type Product } from '../lib/model.ts';
+import Base from './Base.astro';
+
+interface Props {
+  model: Model;
+  product: Product;
+  guideId: string;
+  loc: Loc;
+}
+const { model: m, product: p, guideId, loc } = Astro.props;
+const guide = p.guides.find((g) => g.id === guideId)!;
+const G = guide.locales[loc]!;
+const S = p.locales[loc];
+const { c, ui } = G;
+const H = pickLocale(m.hub.locales, loc, m.hub.def);
+const others = Object.values(guide.locales).filter((o) => o.loc !== loc);
+const related = p.guides.filter((g) => g !== guide);
+const og = ogImage(p, loc);
+const markdownHref = URLS.href(`${G.path}index.md`);
+const dateText = new Intl.DateTimeFormat(G.lang, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${guide.lastVerified}T12:00:00Z`));
+
+const page = {
+  lang: G.lang,
+  title: c.seo.title,
+  description: c.seo.description,
+  keywords: c.seo.keywords,
+  url: G.url,
+  defaultUrl: guide.locales[guide.def]!.url,
+  alternates: Object.values(guide.locales).map((o) => ({ lang: o.lang, url: o.url })),
+  ogLocale: G.meta.og,
+  ogAlternates: others.map((o) => o.meta.og),
+  image: og ? { url: og, width: 1200, height: 630, alt: S.c.seo.imageAlt || c.seo.title } : null,
+  icon: URLS.href(`${p.basePath}assets/icon.svg`),
+  appleIcon: hasAsset(p, 'apple-touch-icon.png') ? URLS.href(`${p.basePath}assets/apple-touch-icon.png`) : URLS.href(m.brand.appleIcon),
+  markdownUrl: markdownHref,
+  theme: p.theme,
+  jsonld: guideGraph(p, guide, G, H, og),
+  type: 'article' as const,
+};
+const header = {
+  ui,
+  homeHref: H.href,
+  homeLabel: m.hub.name,
+  logoSrc: URLS.href(m.brand.mark),
+  nav: [{ href: S.href, label: `${p.name} — ${p.code}` }],
+  langLinks: others.map((o) => ({ href: o.href, lang: o.lang, label: o.meta.label, short: o.meta.short })),
+};
+---
+<Base page={page} product={p.slug} header={header}>
+  <section class="hero article-hero" aria-labelledby="h1">
+    <div class="wrap">
+      <nav class="crumbs" aria-label={ui.breadcrumb}><ol><li><a href={H.href}>{m.hub.name}</a></li><li><a href={S.href}>{p.name}</a></li><li aria-current="page">{plain(c.title)}</li></ol></nav>
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>{ui.guide} · {p.name}</p>
+      <h1 id="h1"><Md text={c.title} /></h1>
+      <p class="lead"><Md text={c.lead} /></p>
+      <p class="article-meta"><span>{ui.updated} <time datetime={guide.lastVerified}>{dateText}</time></span><span>{m.hub.name}</span></p>
+    </div>
+  </section>
+  <GuideArticle product={p} G={G} />
+  <section class="section section--alt" aria-labelledby="related-h">
+    <div class="wrap">
+      <div class="section__head"><h2 id="related-h">{ui.relatedGuides}</h2></div>
+      <ul class="guides">
+        <GuideCard href={S.href} icon="gift" title={`${ui.backToCode}${ui.colon}${p.code}`} plainTitle text={S.c.hub.summary} more={ui.seeGuide} />
+        {related.map((g) => {
+          const R = pickLocale(g.locales, loc, g.def);
+          return <GuideCard href={R.href} icon={g.icon} title={R.c.title} text={R.c.card || R.c.lead} more={ui.readGuide} />;
+        })}
+      </ul>
+    </div>
+  </section>
+  <ProductFooter slot="footer" product={p} L={S} H={H} hubName={m.hub.name} siblings={siblingCards(m, p, loc)} logoSrc={URLS.href(m.brand.mark)} markdownHref={markdownHref} year={m.year} />
+  <StickyBar slot="after" code={p.code} link={String(G.vars.link)} ui={ui} />
+</Base>
+
+<style is:global>
+  .article-hero{padding-bottom:clamp(24px,4vw,40px)}
+  .article-hero h1{font-size:clamp(2.1rem,5vw,3.4rem);max-width:20ch}
+  .article-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 0;color:var(--muted);font-size:.9rem}
+</style>

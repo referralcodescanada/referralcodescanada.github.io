@@ -1,0 +1,32 @@
+---
+// Accordion of questions + its schema.org FAQPage (same text for visitors and for Google).
+import { jsonLd } from '../../lib/format.ts';
+import { faqPageNode } from '../../lib/jsonld.ts';
+import Icon from './Icon.astro';
+import Md from './Md.astro';
+interface Props {
+  items: { q: string; a: string }[];
+  /** @id of the FAQPage node (e.g. "<page url>#faq"); omit to render the accordion only. */
+  schemaId?: string;
+  inLanguage?: string;
+  openFirst?: boolean;
+}
+const { items, schemaId, inLanguage, openFirst = false } = Astro.props;
+const data = schemaId && { '@context': 'https://schema.org', ...faqPageNode(schemaId, items, inLanguage) };
+---
+<div class="faq">{items.map((f, i) => <details class="faq__item" open={openFirst && i === 0}><summary><h3><Md text={f.q} /></h3><span class="faq__chev"><Icon name="plus" /></span></summary><div class="faq__a"><p><Md text={f.a} /></p></div></details>)}</div>
+{data && <script type="application/ld+json" is:inline set:html={jsonLd(data)} />}
+
+<style is:global>
+  .faq{border-top:1px solid var(--line)}
+  .faq__item{border-bottom:1px solid var(--line)}
+  .faq__item summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 4px;cursor:pointer;list-style:none}
+  .faq__item summary::-webkit-details-marker{display:none}
+  .faq__item h3{margin:0;font-size:1.1rem}
+  .faq__chev{display:grid;place-items:center;width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);transition:transform .25s ease,background .2s}
+  .faq__item[open] .faq__chev{transform:rotate(45deg);background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .faq__item summary:hover .faq__chev{border-color:var(--ink)}
+  .faq__a{padding:0 4px 22px;color:var(--muted);max-width:68ch}
+  .faq__a p{margin:0}
+  .faq__a strong,.faq__a a,.faq__a em{color:var(--ink)}
+</style>

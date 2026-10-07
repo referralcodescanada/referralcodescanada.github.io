@@ -1,0 +1,83 @@
+---
+// A product's referral page in one language. Sections after the hero alternate backgrounds,
+// whatever optional sections the product leaves out.
+import FinalCta from '../components/sections/FinalCta.astro';
+import OtherCodes from '../components/sections/OtherCodes.astro';
+import ProductExisting from '../components/sections/ProductExisting.astro';
+import ProductFacts from '../components/sections/ProductFacts.astro';
+import ProductFaq from '../components/sections/ProductFaq.astro';
+import ProductFeatures from '../components/sections/ProductFeatures.astro';
+import ProductFooter from '../components/sections/ProductFooter.astro';
+import ProductGuides from '../components/sections/ProductGuides.astro';
+import ProductHero from '../components/sections/ProductHero.astro';
+import ProductRules from '../components/sections/ProductRules.astro';
+import ProductSteps from '../components/sections/ProductSteps.astro';
+import StickyBar from '../components/ui/StickyBar.astro';
+import { hasAsset, ogImage } from '../lib/assets.ts';
+import type { Loc } from '../lib/i18n.ts';
+import { productGraph } from '../lib/jsonld.ts';
+import { URLS, pickLocale, siblingCards, type Model, type Product } from '../lib/model.ts';
+import Base from './Base.astro';
+
+interface Props {
+  model: Model;
+  product: Product;
+  loc: Loc;
+}
+const { model: m, product: p, loc } = Astro.props;
+const L = p.locales[loc];
+const { c, ui } = L;
+const H = pickLocale(m.hub.locales, loc, m.hub.def);
+const siblings = siblingCards(m, p, loc);
+const others = p.locs.filter((l) => l !== loc).map((l) => p.locales[l]);
+const og = ogImage(p, loc);
+const markdownHref = URLS.href(`${L.path}index.md`);
+
+// Present sections, in order: each one gets the alternate background when its index is even.
+const order = ['facts', 'steps', c.existing && 'existing', 'rules', c.features && 'features', 'faq', p.guides.length && 'guides', siblings.length && 'others'].filter(Boolean);
+const alt = (key: string) => order.indexOf(key) % 2 === 0;
+
+const page = {
+  lang: L.lang,
+  title: c.seo.title,
+  description: c.seo.description,
+  keywords: c.seo.keywords,
+  url: L.url,
+  defaultUrl: p.locales[p.def].url,
+  alternates: p.locs.map((l) => ({ lang: p.locales[l].lang, url: p.locales[l].url })),
+  ogLocale: L.meta.og,
+  ogAlternates: others.map((o) => o.meta.og),
+  image: og ? { url: og, width: 1200, height: 630, alt: c.seo.imageAlt || c.seo.title } : null,
+  icon: URLS.href(`${p.basePath}assets/icon.svg`),
+  appleIcon: hasAsset(p, 'apple-touch-icon.png') ? URLS.href(`${p.basePath}assets/apple-touch-icon.png`) : URLS.href(m.brand.appleIcon),
+  markdownUrl: markdownHref,
+  theme: p.theme,
+  jsonld: productGraph(p, L, m.hub, H, og),
+};
+const header = {
+  ui,
+  homeHref: H.href,
+  homeLabel: m.hub.name,
+  logoSrc: URLS.href(m.brand.mark),
+  nav: [
+    { href: '#how', label: ui.nav.how },
+    { href: '#rules', label: ui.nav.rules },
+    { href: '#faq', label: ui.nav.faq },
+  ],
+  langLinks: others.map((o) => ({ href: o.href, lang: o.lang, label: o.meta.label, short: o.meta.short })),
+};
+---
+<Base page={page} product={p.slug} header={header}>
+  <ProductHero product={p} L={L} H={H} hubName={m.hub.name} />
+  <ProductFacts L={L} alt={alt('facts')} />
+  <ProductSteps product={p} L={L} alt={alt('steps')} />
+  {c.existing && <ProductExisting existing={c.existing} alt={alt('existing')} />}
+  <ProductRules L={L} alt={alt('rules')} />
+  {c.features && <ProductFeatures features={c.features} alt={alt('features')} />}
+  <ProductFaq L={L} alt={alt('faq')} />
+  {p.guides.length > 0 && <ProductGuides product={p} L={L} alt={alt('guides')} />}
+  {siblings.length > 0 && <OtherCodes cards={siblings} ui={ui} alt={alt('others')} />}
+  <FinalCta product={p} L={L} />
+  <ProductFooter slot="footer" product={p} L={L} H={H} hubName={m.hub.name} siblings={siblings} logoSrc={URLS.href(m.brand.mark)} markdownHref={markdownHref} year={m.year} />
+  <StickyBar slot="after" code={p.code} link={String(L.vars.link)} ui={ui} />
+</Base>

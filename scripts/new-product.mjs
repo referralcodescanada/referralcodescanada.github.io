@@ -1,85 +1,47 @@
-// Creates a new product repo next to this one (one repo = one product, published at /<slug>/),
-// and registers it on the home-page repo.
-//
-//   npm run new-product -- <slug> [--from <existing-site>]
-//   e.g. npm run new-product -- fizz
-//
-// Result: ../<slug>/ with the shared engine, hub config set to publish: '<slug>',
-// and sites/<slug>/ copied from an existing site as a DRAFT (texts to rewrite, no guides).
+// npm run new-product -- <slug> [--from <existing-slug>]
+// Creates src/content/products/<slug>/ from an existing product (default: the first one), as a draft:
+// rewrite every fact and text (official sources only), replace assets/icon.svg, then set draft: false.
 import fs from 'node:fs';
 import path from 'node:path';
-import { copyEngine, listRepos, PARENT, readProducts, setConfigLine } from './engine.mjs';
-import { ROOT } from './load.mjs';
+import { ROOT } from './content.mjs';
 
 const args = process.argv.slice(2);
 const slug = args.find((a) => !a.startsWith('--'));
 const fromIdx = args.indexOf('--from');
-const from = fromIdx >= 0 ? args[fromIdx + 1] : fs.readdirSync(path.join(ROOT, 'sites')).find((d) => !/^[._]/.test(d));
+const PRODUCTS = path.join(ROOT, 'src', 'content', 'products');
+const existing = fs.readdirSync(PRODUCTS).filter((d) => fs.existsSync(path.join(PRODUCTS, d, 'product.yaml')));
+const from = fromIdx >= 0 ? args[fromIdx + 1] : existing[0];
 
-if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
-  console.error('Usage: npm run new-product -- <slug>   (lowercase letters, digits, dashes — becomes the URL /<slug>/ and the GitHub repo name)');
+if (!slug || !/^[a-z0-9-]+$/.test(slug) || ['en', 'fr', 'assets'].includes(slug)) {
+  console.error('Usage: npm run new-product -- <slug> [--from <existing>]   (slug: lowercase letters, digits, dashes)');
   process.exit(1);
 }
-const dest = path.join(PARENT, slug);
+const dest = path.join(PRODUCTS, slug);
 if (fs.existsSync(dest)) {
-  console.error(`${dest} already exists.`);
+  console.error(`src/content/products/${slug}/ already exists.`);
   process.exit(1);
 }
-const srcSite = path.join(ROOT, 'sites', from || '');
-if (!from || !fs.existsSync(srcSite)) {
-  console.error(`No source site to copy from (looked for sites/${from}). Use --from <slug>.`);
+if (!existing.includes(from)) {
+  console.error(`Unknown template product "${from}". Existing: ${existing.join(', ')}`);
   process.exit(1);
 }
 
-// 1. Engine + shared settings
-fs.mkdirSync(dest, { recursive: true });
-copyEngine(ROOT, dest);
-setConfigLine(dest, 'publish', `'${slug}'`);
-setConfigLine(dest, 'products', `['${slug}']`);
-if (fs.existsSync(path.join(ROOT, 'public'))) fs.cpSync(path.join(ROOT, 'public'), path.join(dest, 'public'), { recursive: true });
+const src = path.join(PRODUCTS, from);
+fs.mkdirSync(path.join(dest, 'assets'), { recursive: true });
+let facts = fs.readFileSync(path.join(src, 'product.yaml'), 'utf8');
+facts = facts
+  .replace(/^draft: .*$/m, 'draft: true')
+  .replace(/^redirects:\n(?:  .*\n)+/m, 'redirects: []\n')
+  .replace(new RegExp(`/${from}/`, 'g'), `/${slug}/`);
+fs.writeFileSync(path.join(dest, 'product.yaml'), facts);
+for (const f of ['en.yaml', 'fr.yaml']) if (fs.existsSync(path.join(src, f))) fs.copyFileSync(path.join(src, f), path.join(dest, f));
+fs.copyFileSync(path.join(src, 'assets', 'icon.svg'), path.join(dest, 'assets', 'icon.svg'));
 
-// 2. Product content (draft), without guides or generated images
-fs.cpSync(srcSite, path.join(dest, 'sites', slug), {
-  recursive: true,
-  filter: (p) => !/[\\/]guides([\\/]|$)|og-[a-z]+\.png$|apple-touch-icon\.png$/.test(p),
-});
-const cfgFile = path.join(dest, 'sites', slug, 'site.config.mjs');
-fs.writeFileSync(cfgFile, fs.readFileSync(cfgFile, 'utf8').replace(/draft:\s*false/, 'draft: true'));
-fs.mkdirSync(path.join(dest, 'sites', slug, 'guides'), { recursive: true });
-
-// 3. Minimal README
-fs.writeFileSync(
-  path.join(dest, 'README.md'),
-  `# ${slug} — referral code
-
-Repo **\`referralcodescanada/${slug}\`** → https://referralcodescanada.github.io/${slug}/
-
-Part of Referral Codes Canada. Everything is explained in [docs/](docs/) and [CLAUDE.md](CLAUDE.md).
-
-- Content: \`sites/${slug}/site.config.mjs\` and \`sites/${slug}/guides/\`
-- Local preview: \`npm run dev\`
-- Live check: \`npm run check\`
-`,
-);
-
-// 4. Register on the home-page repo
-const hubRepo = listRepos().find((r) => r.publish === 'hub');
-let hubMsg = 'No home-page repo (publish: \'hub\') found next to this one — add the product to its `products` list manually.';
-if (hubRepo) {
-  const list = readProducts(hubRepo.dir);
-  if (!list.includes(slug)) {
-    setConfigLine(hubRepo.dir, 'products', `[${[...list, slug].map((s) => `'${s}'`).join(', ')}]`);
-    hubMsg = `Added '${slug}' to products in ${hubRepo.name}/hub/hub.config.mjs (commit + push that repo once ${slug} is live).`;
-  } else hubMsg = `'${slug}' was already listed in ${hubRepo.name}.`;
-}
-
-console.log(`✔ Created ${dest}
-  sites/${slug}/site.config.mjs is a DRAFT copied from "${from}": rewrite brand, referral, links, texts, FAQ, theme.
-  ${hubMsg}
+console.log(`✔ Created src/content/products/${slug}/ (draft, copied from ${from})
 
 Next:
-  1. Edit sites/${slug}/site.config.mjs and replace sites/${slug}/assets/icon.svg
-  2. cd ../${slug} && npm install && npm run og
-  3. Set draft: false, then npm run dev to review
-  4. Create the public GitHub repo "${slug}", Settings → Pages → Source: GitHub Actions
-  5. git init -b main, commit, push (see docs/publishing.md)`);
+  1. Rewrite product.yaml (code, link, bonus, dates, colors) and en.yaml / fr.yaml — official sources only.
+  2. Replace assets/icon.svg with an original icon (never the company's logo).
+  3. npm run og        → share images
+  4. Set draft: false, npm run build, check http://localhost:4321/${slug}/ (npm run dev).
+  5. Commit and push: the page goes live at /${slug}/ and on the home page.`);

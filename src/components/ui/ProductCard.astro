@@ -1,0 +1,37 @@
+---
+// Card of one product (home page, "more codes"): name, bonus, code + copy button. The whole card is a link.
+import type { UiStrings } from '../../lib/i18n.ts';
+import type { Card } from '../../lib/model.ts';
+import CopyButton from './CopyButton.astro';
+import Icon from './Icon.astro';
+import Md from './Md.astro';
+interface Props {
+  card: Card;
+  ui: UiStrings;
+}
+const { card: s, ui } = Astro.props;
+---
+<li class="card mini" style={`--card-accent:${s.accent}`}>
+  <div class="mini__top"><img src={s.iconHref} alt="" width="44" height="44" loading="lazy" /><div><h3><a href={s.href}>{s.name}</a></h3><p class="mini__bonus"><Md text={s.summary} /></p></div></div>
+  <div class="mini__code"><span class="codebox__label">{ui.codeLabel}</span><code>{s.code}</code><CopyButton code={s.code} ui={ui} variant="sm" /></div>
+  <a class="mini__link" href={s.href}>{ui.seeGuide} <Icon name="arrow" /></a>
+</li>
+
+<style is:global>
+  .cards{list-style:none;display:grid;gap:18px;margin:0;padding:0}
+  @media (min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media (min-width:1020px){.cards{grid-template-columns:repeat(3,1fr)}}
+  .card.mini{position:relative;display:flex;flex-direction:column;gap:18px;padding:24px;border-top:4px solid var(--card-accent,var(--accent));transition:transform .2s ease,box-shadow .2s ease}
+  .mini:hover{transform:translateY(-4px);box-shadow:0 26px 44px -30px color-mix(in srgb,var(--ink) 55%,transparent)}
+  .mini__top{display:flex;gap:14px;align-items:center}
+  .mini__top img{width:44px;height:44px;border-radius:12px}
+  .mini h3{margin:0;font-size:1.25rem}
+  .mini h3 a{text-decoration:none}
+  .mini h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+  .mini__bonus{margin:2px 0 0;color:var(--muted);font-size:.94rem;line-height:1.4}
+  .mini__code{position:relative;z-index:1;display:flex;align-items:center;gap:10px;padding:10px 10px 10px 16px;border:1.5px dashed var(--line);border-radius:14px}
+  .mini__code .codebox__label{display:none}
+  .mini__code code{flex:1;font-size:1.3rem;font-weight:700;letter-spacing:.14em;background:none;padding:0}
+  .mini .copy{background:var(--card-accent,var(--accent));color:#fff}
+  .mini .copy.is-copied{background:var(--brand);color:var(--brand-ink)}
+</style>

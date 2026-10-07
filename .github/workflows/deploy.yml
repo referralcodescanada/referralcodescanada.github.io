@@ -4,8 +4,7 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Daily rebuild: picks up changes from the other repos (home page ↔ product sites)
-  # and rolls the year in titles ("… Referral Code 2027") over by itself.
+  # Daily rebuild: rolls the year in titles ("… Referral Code 2027") over by itself.
   schedule:
     - cron: '17 6 * * *'
 
@@ -18,6 +17,9 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  ASTRO_TELEMETRY_DISABLED: 1
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,9 +28,11 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      # The generator has no runtime dependencies: no npm install needed.
+          cache: npm
+      - run: npm ci
+      # Content is validated here: an invalid product or guide file stops the deploy.
       - name: Build site
-        run: node scripts/build.mjs
+        run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -54,5 +58,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci
       - name: Ping IndexNow (Bing / ChatGPT search, Yandex, …)
-        run: node scripts/indexnow.mjs
+        run: npm run indexnow

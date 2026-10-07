@@ -1,0 +1,45 @@
+---
+// Footer of product and guide pages: official sources, guides, other codes, machine-readable files, languages.
+import { plain } from '../../lib/format.ts';
+import { URLS, pickLocale, type Card, type HubLocale, type Product, type ProductLocale } from '../../lib/model.ts';
+import Footer, { type FooterColumn } from '../layout/Footer.astro';
+interface Props {
+  product: Product;
+  L: ProductLocale;
+  H: HubLocale;
+  hubName: string;
+  siblings: Card[];
+  logoSrc: string;
+  markdownHref: string;
+  year: number;
+}
+const { product: p, L, H, hubName, siblings, logoSrc, markdownHref, year } = Astro.props;
+const { c, ui } = L;
+const columns: FooterColumn[] = [
+  {
+    title: ui.resources,
+    links: [
+      c.links.officialUrl && { href: c.links.officialUrl, label: `${ui.officialSite} — ${p.name}`, rel: 'noopener' },
+      c.links.termsUrl && { href: c.links.termsUrl, label: ui.officialTerms, rel: 'noopener' },
+      c.links.promotionsUrl && { href: c.links.promotionsUrl, label: ui.promotions, rel: 'noopener' },
+    ].filter((l) => !!l) as FooterColumn['links'],
+  },
+  {
+    title: ui.guidesKicker,
+    links: p.guides.map((g) => pickLocale(g.locales, L.loc, g.def)).map((G) => ({ href: G.href, label: plain(G.c.title) })),
+  },
+  { title: ui.allCodes, links: [{ href: H.href, label: hubName }, ...siblings.map((s) => ({ href: s.href, label: `${s.name} — ${s.code}` }))] },
+  {
+    title: ui.machine,
+    links: [
+      { href: markdownHref, label: 'Markdown' },
+      { href: URLS.href(`${p.basePath}llms.txt`), label: 'llms.txt' },
+      { href: URLS.href(`${p.basePath}referral.json`), label: 'referral.json' },
+    ],
+  },
+  { title: ui.language, links: p.locs.map((l) => ({ href: p.locales[l].href, label: p.locales[l].meta.label, lang: p.locales[l].lang })) },
+];
+---
+<Footer homeHref={H.href} homeLabel={hubName} logoSrc={logoSrc} disclaimer={c.footer.disclaimer} columns={columns}>
+  <Fragment slot="meta">{`© ${year} ${hubName} · ${ui.lastVerified}${ui.colon}`}<time datetime={p.lastVerified}>{L.vars.verifiedDate}</time></Fragment>
+</Footer>

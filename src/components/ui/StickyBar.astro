@@ -1,0 +1,50 @@
+---
+// Mobile bar with the code, a copy button and the sign-up link. It appears once the hero code box
+// (data-hero-code) has scrolled out of view, and hides again at the final call to action (.final).
+import type { UiStrings } from '../../lib/i18n.ts';
+import Button from './Button.astro';
+import CopyButton from './CopyButton.astro';
+interface Props {
+  code: string;
+  link: string;
+  ui: UiStrings;
+}
+const { code, link, ui } = Astro.props;
+---
+<div class="stickybar" role="region" aria-label={ui.quickActions}>
+  <div class="stickybar__code"><small>{ui.codeLabel}</small><code>{code}</code></div>
+  <CopyButton code={code} ui={ui} variant="sm" />
+  <Button href={link} label={ui.signUp} size="sm" />
+</div>
+
+<style is:global>
+  .stickybar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 16px;border-radius:999px;background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 18px 40px -16px rgba(0,0,0,.35);transform:translateY(150%);transition:transform .35s cubic-bezier(.2,.9,.3,1)}
+  .stickybar.is-on{transform:none}
+  .stickybar__code{display:flex;flex-direction:column;margin-right:auto;line-height:1.15}
+  .stickybar__code small{font-size:.66rem;font-weight:650;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .stickybar__code code{font-size:1.1rem;font-weight:700;letter-spacing:.12em}
+  .stickybar .btn .i{display:none}
+  @media (min-width:860px){.stickybar{display:none}}
+  @media (max-width:380px){.stickybar .copy span{display:none}}
+</style>
+
+<script>
+  const bar = document.querySelector('.stickybar');
+  const anchor = document.querySelector('[data-hero-code]');
+  const final = document.querySelector('.final');
+  if (bar && anchor && 'IntersectionObserver' in window) {
+    let pastHero = false;
+    let atFinal = false;
+    const sync = () => bar.classList.toggle('is-on', pastHero && !atFinal);
+    new IntersectionObserver(([en]) => {
+      pastHero = !en.isIntersecting && en.boundingClientRect.top < 0;
+      sync();
+    }).observe(anchor);
+    if (final) {
+      new IntersectionObserver(([en]) => {
+        atFinal = en.isIntersecting;
+        sync();
+      }).observe(final);
+    }
+  }
+</script>

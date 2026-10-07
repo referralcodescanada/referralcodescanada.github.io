@@ -1,0 +1,155 @@
+# wealthsimple — English copy
+# Placeholders: {brand} {code} {codeSpelled} {link} {linkDisplay} {bonus} {bonusCents} {minDeposit}
+#   {minDepositCents} {balanceDemo} {year} {verifiedDate} {month} + every key of `links` below.
+# Inline formatting: **bold** *italic* `code` ==highlight== [text](url). Schema: src/lib/schema.ts
+links:
+  officialUrl: https://www.wealthsimple.com/en-ca
+  termsUrl: https://help.wealthsimple.com/hc/en-ca/articles/19646567019035-Wealthsimple-Referral-Bonus-Promotion-2026
+  transferUrl: https://help.wealthsimple.com/hc/en-ca/articles/1500003503661
+  promotionsUrl: https://www.wealthsimple.com/en-ca/promotions
+seo:
+  title: "Wealthsimple Referral Code {year}: {code} — Get a {bonus} Cash Bonus"
+  description: Use Wealthsimple referral code {code} to get a {bonus} cash bonus when you deposit {minDeposit}+. Invite link, step-by-step guide, rules & FAQ. Verified {month}.
+  keywords:
+    - Wealthsimple referral code
+    - Wealthsimple promo code
+    - Wealthsimple invite code
+    - Wealthsimple sign up bonus
+    - Wealthsimple referral link
+    - Wealthsimple $25 bonus
+    - "{code}"
+  imageAlt: Wealthsimple referral code {code} — {bonus} cash bonus
+og:
+  eyebrow: WORKING CODE
+  line1: Wealthsimple
+  line2: referral code
+  badgeBottom: cash bonus
+hub:
+  summary: "{bonus} cash bonus when you deposit {minDeposit} or more."
+hero:
+  eyebrow: Working code · verified {verifiedDate}
+  h1: "Wealthsimple referral code: =={code}=="
+  lead: Enter **{code}** when you open your Wealthsimple account — or just use my invite link — and get a **{bonus} cash bonus** once you deposit {minDeposit} or more. It takes about five minutes.
+  cta: Sign up with my invite link
+  ctaSecondary: How it works
+  note: The link applies the code automatically. Prefer typing it? Use **{code}**.
+  chips:
+    - "{bonus} cash bonus"
+    - "{minDeposit} minimum deposit"
+    - Usually paid within 24 h
+mockup:
+  account: Chequing
+  balanceLabel: Balance
+  balance: "{balanceDemo}"
+  notifTitle: Referral bonus
+  notifBody: Code {code} applied
+  amount: +{bonusCents}
+  rows:
+    - label: Referral code
+      value: "{code} ✓"
+    - label: First deposit
+      value: "{minDepositCents}"
+    - label: Bonus status
+      value: Paid
+  sticker: "{bonus}"
+  stickerSub: bonus
+facts:
+  kicker: TL;DR
+  title: Quick answer
+  intro: The **Wealthsimple referral code is {code}**. Here is everything you need to know about the {bonus} sign-up bonus, at a glance.
+  items:
+    - label: Referral code
+      value: "**{code}** ({codeSpelled})"
+    - label: Invite link
+      value: "[{linkDisplay}]({link})"
+    - label: Your bonus
+      value: "{bonus} cash, paid into your Wealthsimple Chequing account"
+    - label: Minimum deposit
+      value: "{minDeposit} from an outside bank or institution, within 30 days"
+    - label: Deadline to add the code
+      value: Within 7 days of funding your account
+    - label: When you get paid
+      value: Usually within 24 hours of your qualifying deposit
+    - label: Who can use it
+      value: New Wealthsimple clients, legal residents of Canada, age of majority
+    - label: Last verified
+      value: "{verifiedDate}"
+steps:
+  kicker: Step by step
+  title: How to get your {bonus} Wealthsimple bonus
+  intro: Four steps, about five minutes. The invite link applies the code for you — the code itself is your backup.
+  totalTime: PT10M
+  items:
+    - title: Open my invite link
+      text: Tap [{linkDisplay}]({link}) on your phone or computer. Your new account is linked to code **{code}** automatically.
+    - title: Create your account
+      text: Sign up in the Wealthsimple app or on the web and verify your identity with a government-issued photo ID.
+    - title: Confirm the code
+      text: Didn’t use the link? Tap the **gift icon** → *Invite friends* → *Enter referral code* and type **{code}**, within 7 days of funding.
+    - title: Deposit {minDeposit} or more
+      text: Fund an eligible account with at least {minDeposit} from an outside bank within 30 days. Your {bonus} usually lands in Chequing within 24 hours.
+existing:
+  kicker: Already have an account?
+  title: Signed up without a code? Add it now
+  intro: You can still apply **{code}** up to **7 days after your first deposit**. Here’s exactly where to enter it.
+  cards:
+    - icon: phone
+      title: In the Wealthsimple app
+      steps:
+        - Open the app and tap the **gift icon** at the top right of Home.
+        - Select the **Invite friends** tab.
+        - Tap **Enter referral code** and type **{code}**.
+    - icon: monitor
+      title: On the web
+      steps:
+        - Log in to your Wealthsimple account on a computer.
+        - Click the **gift icon** at the bottom left of Home.
+        - Find *Got a referral code? Enter it here* and submit **{code}**.
+  note: Missed the 7-day window? Contact Wealthsimple support — they may be able to link the referral manually.
+rules:
+  kicker: Fine print
+  title: The rules, in plain English
+  intro: A summary of Wealthsimple’s referral bonus terms. The [official terms]({termsUrl}) always take precedence.
+  items:
+    - You must be a **new Wealthsimple client**, a legal resident of Canada and the age of majority in your province or territory.
+    - Deposit at least **{minDeposit}** from an external bank account or financial institution within **30 days** of the referral being linked.
+    - Money moved between Wealthsimple clients, Wealthsimple bonuses and other internal transfers **don’t count**.
+    - You must be the **primary account holder** of the funded account.
+    - The bonus is paid into your Wealthsimple **Chequing** account — open one (it’s free) to receive it.
+    - One referrer per new client, and you can’t refer back the person who referred you.
+    - The terms include a **180-day hold period** once the bonus is applied — read them before moving money out.
+  note: Summarized from Wealthsimple’s Referral Bonus Promotion terms on {verifiedDate}. Promotions can change at any time.
+faq:
+  kicker: FAQ
+  title: Wealthsimple referral code — FAQ
+  items:
+    - q: What is the Wealthsimple referral code?
+      a: The Wealthsimple referral code is **{code}**. Enter it when you open your account, or sign up through [{linkDisplay}]({link}) and it’s applied automatically. You get a {bonus} cash bonus once you deposit {minDeposit} or more.
+    - q: How much is the Wealthsimple referral bonus in {year}?
+      a: It’s **{bonus} in cash** for you, and {bonus} for the person who referred you. It’s paid into your Wealthsimple Chequing account, usually within 24 hours of your qualifying deposit.
+    - q: Is there a Wealthsimple promo code?
+      a: "For new clients, the referral code **is** the sign-up promo code: use **{code}** to get {bonus}. Wealthsimple also runs time-limited offers (such as transfer matches) listed on its [official promotions page]({promotionsUrl}) — check each offer’s terms."
+    - q: Can I add a referral code after signing up?
+      a: Yes, within **7 days of funding** your account. In the app, tap the gift icon → *Invite friends* → *Enter referral code* (on the web, click the gift icon on Home) and type **{code}**.
+    - q: Does transferring an account from another bank count for the bonus?
+      a: Money coming from another financial institution counts as external funding, so a transfer can qualify if it lands within the 30-day window. Transfers can take a few weeks, though — a regular {minDeposit} deposit from your bank is the fastest way to trigger the {bonus}. For how transfers work, see [Wealthsimple’s transfer guide]({transferUrl}).
+    - q: What is the minimum deposit to get the bonus?
+      a: "**{minDeposit}**, from an outside bank account or financial institution, within 30 days of the referral being linked. Transfers from other Wealthsimple clients and internal bonuses don’t count."
+    - q: Which Wealthsimple accounts qualify?
+      a: Self-directed investing accounts (including TFSA, RRSP, FHSA and non-registered), Crypto, Managed investing and Chequing accounts are all eligible.
+    - q: When will I receive my {bonus}?
+      a: Usually within 24 hours of your qualifying deposit, straight into your Wealthsimple Chequing account. No Chequing account yet? Open one for free — you have 90 days before the bonus expires.
+    - q: Does the Wealthsimple referral code work in Quebec?
+      a: Yes. The program is open to legal residents of every Canadian province and territory, including Quebec, who have reached the age of majority (18 or 19 depending on the province).
+    - q: Can I use more than one referral code?
+      a: No. Each new client can be linked to a single referrer, so pick one code and stick with it.
+    - q: I already have a Wealthsimple account. Can I still get the bonus?
+      a: The bonus is for new clients. If you opened your account recently, you can still add a code within 7 days of your first deposit. Existing clients earn by sharing their own referral code.
+    - q: Is {code} a legit, working Wealthsimple code?
+      a: Yes. **{code}** is a personal referral code issued by Wealthsimple to a real client, last verified on {verifiedDate}. This site isn’t affiliated with Wealthsimple; when you use the code, the referrer also receives {bonus} — that’s how the program works.
+finalCta:
+  title: Ready? Your {bonus} is waiting.
+  text: Copy **{code}** or use the invite link — the bonus is the same either way.
+  button: Open Wealthsimple with my link
+footer:
+  disclaimer: "Independent page, not affiliated with, endorsed or sponsored by Wealthsimple. Wealthsimple is a trademark of its owner. This page shares a personal referral code: when you use it, both you and the referrer receive a bonus. Not financial advice. Offer summarized from Wealthsimple’s public terms — always check the [official terms]({termsUrl})."

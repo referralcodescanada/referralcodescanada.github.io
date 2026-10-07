@@ -1,0 +1,85 @@
+---
+// Body of a guide: the article (sections from its Markdown + FAQ) and the sidebar (table of contents + code).
+import type { GuideLocale, Product } from '../../lib/model.ts';
+import Button from '../ui/Button.astro';
+import CodeBox from '../ui/CodeBox.astro';
+import Faq from '../ui/Faq.astro';
+import Md from '../ui/Md.astro';
+import Note from '../ui/Note.astro';
+interface Props {
+  product: Product;
+  G: GuideLocale;
+}
+const { product: p, G } = Astro.props;
+const { c, ui } = G;
+const S = p.locales[G.loc];
+---
+<section class="section section--tight">
+  <div class="wrap article-grid">
+    <article class="prose">
+      {c.sections.map((s, i) => (
+        <section aria-labelledby={`s${i + 1}`}>
+          <h2 id={`s${i + 1}`}><Md text={s.h2} /></h2>
+          {s.blocks.map((b) =>
+            b.type === 'p' ? <p><Md text={b.text} /></p>
+            : b.type === 'ul' ? <ul>{b.items.map((li) => <li><Md text={li} /></li>)}</ul>
+            : b.type === 'ol' ? <ol class="steps-list">{b.items.map((li) => <li><Md text={li} /></li>)}</ol>
+            : <Note text={b.text} />,
+          )}
+        </section>
+      ))}
+      {c.faq.length > 0 && (
+        <section class="article-faq" aria-labelledby="faq-h">
+          <h2 id="faq-h">FAQ</h2>
+          <Faq items={c.faq} schemaId={`${G.url}#faq`} />
+        </section>
+      )}
+    </article>
+    <aside class="aside">
+      <nav class="card toc" aria-label={ui.onThisPage}>
+        <h2>{ui.onThisPage}</h2>
+        <ol>
+          {c.sections.map((s, i) => <li><a href={`#s${i + 1}`}><Md text={s.h2} /></a></li>)}
+          {c.faq.length > 0 && <li><a href="#faq-h">FAQ</a></li>}
+        </ol>
+      </nav>
+      <div class="card callout" data-hero-code>
+        <h2><Md text={ui.calloutTitle} /></h2>
+        <p><Md text={ui.calloutText} /></p>
+        <CodeBox code={p.code} ui={ui} inverse small />
+        <Button href={String(G.vars.link)} label={S.c.hero.cta} variant="accent" />
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style is:global>
+  .article-grid{display:grid;gap:40px}
+  @media (min-width:1000px){.article-grid{grid-template-columns:minmax(0,1fr) 300px;align-items:start}}
+  .toc{padding:20px 22px}
+  .toc h2{margin:0 0 10px;font:700 .76rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .toc ol{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:.95rem}
+  .toc a{text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .aside{display:grid;gap:18px}
+  @media (min-width:1000px){.aside{position:sticky;top:88px}}
+  .card.callout{padding:22px;background:var(--brand);color:var(--brand-ink);border-color:transparent}
+  .callout h2{font:700 1.2rem/1.25 var(--font-display);margin:0 0 8px}
+  .callout p{margin:0 0 16px;font-size:.95rem;opacity:.9}
+  .callout .codebox{margin:0 0 12px;padding:8px 8px 8px 16px}
+  .callout .codebox__code{font-size:1.5rem}
+  .callout .btn{width:100%}
+  .prose{max-width:72ch;font-size:1.04rem}
+  .prose h2{font-size:clamp(1.5rem,3vw,2rem);margin:2em 0 .5em;scroll-margin-top:90px}
+  .prose h2:first-child{margin-top:0}
+  .prose p,.prose li{color:color-mix(in srgb,var(--ink) 86%,var(--muted))}
+  .prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.2em}
+  .prose li{margin-bottom:.45em}
+  .prose li::marker{color:var(--accent);font-weight:700}
+  .prose .steps-list{list-style:none;padding:0;counter-reset:s}
+  .prose .steps-list li{position:relative;padding:14px 16px 14px 58px;margin-bottom:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;counter-increment:s}
+  .prose .steps-list li::before{content:counter(s);position:absolute;left:14px;top:12px;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.9rem}
+  .prose .note{margin:0 0 1.2em}
+  .article-faq{margin-top:56px}
+  .prose>section+section{margin-top:2.4em}
+</style>

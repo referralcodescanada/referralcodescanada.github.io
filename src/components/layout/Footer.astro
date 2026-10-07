@@ -1,0 +1,55 @@
+---
+// Site footer: logo + disclaimer, link columns, and a meta line (copyright, verification date…).
+import LogoCoin from '../ui/LogoCoin.astro';
+import Md from '../ui/Md.astro';
+export interface FooterColumn {
+  title: string;
+  links: { href: string; label: string; rel?: string; lang?: string }[];
+}
+interface Props {
+  homeHref: string;
+  homeLabel: string;
+  logoSrc: string;
+  disclaimer: string;
+  columns: FooterColumn[];
+}
+const { homeHref, homeLabel, logoSrc, disclaimer, columns } = Astro.props;
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href={homeHref}><LogoCoin src={logoSrc} lazy /><span>{homeLabel}</span></a>
+        <p class="footer__disc"><Md text={disclaimer} /></p>
+      </div>
+      {columns
+        .filter((c) => c.links.length)
+        .map((c) => (
+          <nav aria-label={c.title}>
+            <h2 class="footer__h">{c.title}</h2>
+            <ul>
+              {c.links.map((l) => (
+                <li>
+                  <a href={l.href} rel={l.rel} target={l.rel ? '_blank' : undefined} hreflang={l.lang} lang={l.lang}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+    </div>
+    <p class="footer__meta"><slot name="meta" /></p>
+  </div>
+</footer>
+
+<style is:global>
+  .footer{padding:56px 0 calc(32px + env(safe-area-inset-bottom));border-top:1px solid var(--line);font-size:.92rem}
+  .footer__grid{display:flex;flex-wrap:wrap;gap:32px 40px}
+  .footer__brand{flex:2 1 280px}
+  .footer__grid>nav{flex:1 1 150px}
+  .footer__disc{margin:16px 0 0;color:var(--muted);max-width:52ch;font-size:.86rem}
+  .footer__h{margin:0 0 12px;font:700 .76rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .footer nav a{text-decoration:none}
+  .footer nav a:hover{text-decoration:underline}
+  .footer__meta{margin:40px 0 0;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
+</style>

@@ -1,0 +1,38 @@
+---
+// "Signed up without a code?": where to add it after sign-up (app / web), when the product allows it.
+import type { ProductTexts } from '../../lib/schema.ts';
+import Icon from '../ui/Icon.astro';
+import Md from '../ui/Md.astro';
+import Note from '../ui/Note.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Props {
+  existing: NonNullable<ProductTexts['existing']>;
+  alt: boolean;
+}
+const { existing: e, alt } = Astro.props;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="existing" aria-labelledby="existing-h">
+  <div class="wrap">
+    <SectionHead id="existing-h" kicker={e.kicker} title={e.title} intro={e.intro} />
+    <div class="grid-2">
+      {e.cards.map((card) => (
+        <article class="card where">
+          <div class="where__icon"><Icon name={card.icon || 'phone'} /></div>
+          <h3><Md text={card.title} /></h3>
+          <ol>{card.steps.map((s) => <li><Md text={s} /></li>)}</ol>
+        </article>
+      ))}
+    </div>
+    {e.note && <Note text={e.note} />}
+  </div>
+</section>
+
+<style is:global>
+  .where{padding:28px}
+  .where__icon{display:grid;place-items:center;width:48px;height:48px;margin-bottom:16px;border-radius:14px;background:var(--accent-soft);color:var(--accent)}
+  .where__icon .i{width:24px;height:24px}
+  .where ol{margin:0;padding-left:1.2em;color:var(--muted)}
+  .where li{padding-left:.3em;margin-bottom:.5em}
+  .where li::marker{color:var(--accent);font-weight:700}
+  .where strong,.where em{color:var(--ink)}
+</style>

@@ -1,0 +1,18 @@
+---
+// Product FAQ (first answer open) + its FAQPage structured data.
+import type { ProductLocale } from '../../lib/model.ts';
+import Faq from '../ui/Faq.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Props {
+  L: ProductLocale;
+  alt: boolean;
+}
+const { L, alt } = Astro.props;
+const f = L.c.faq;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="faq" aria-labelledby="faq-h">
+  <div class="wrap narrow">
+    <SectionHead id="faq-h" kicker={f.kicker} title={f.title} intro={f.intro} />
+    <Faq items={f.items} schemaId={`${L.url}#faq`} inLanguage={L.lang} openFirst />
+  </div>
+</section>

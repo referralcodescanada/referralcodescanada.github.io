@@ -1,0 +1,35 @@
+---
+// Sticky top bar: network logo (home link), page navigation and the other language.
+import type { UiStrings } from '../../lib/i18n.ts';
+import LogoCoin from '../ui/LogoCoin.astro';
+interface Props {
+  ui: UiStrings;
+  homeHref: string;
+  homeLabel: string;
+  logoSrc: string;
+  nav: { href: string; label: string }[];
+  langLinks: { href: string; lang: string; label: string; short: string }[];
+}
+const { ui, homeHref, homeLabel, logoSrc, nav, langLinks } = Astro.props;
+---
+<a class="skip" href="#main">{ui.skip}</a>
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="logo" href={homeHref}><LogoCoin src={logoSrc} /><span>{homeLabel}</span></a>
+    <nav class="nav" aria-label="Main">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      {langLinks.map((l) => <a class="lang" href={l.href} hreflang={l.lang} lang={l.lang} title={l.label}>{l.short}</a>)}
+    </nav>
+  </div>
+</header>
+
+<style is:global>
+  .topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:saturate(1.5) blur(14px);backdrop-filter:saturate(1.5) blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+  .topbar__in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+  .nav{display:flex;align-items:center;gap:4px}
+  .nav a{padding:8px 14px;border-radius:999px;font-size:.94rem;font-weight:550;color:var(--muted);text-decoration:none;transition:background .2s,color .2s}
+  .nav a:hover{background:var(--surface);color:var(--ink)}
+  .nav .lang{margin-left:6px;border:1px solid var(--line);color:var(--ink);font-weight:650;font-size:.82rem;letter-spacing:.06em}
+  @media (max-width:720px){.nav a:not(.lang){display:none}}
+</style>

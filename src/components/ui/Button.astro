@@ -1,0 +1,34 @@
+---
+// Call-to-action link. External links open in a new tab; referral links get rel="sponsored".
+import { relFor } from '../../lib/format.ts';
+import Icon from './Icon.astro';
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'primary' | 'accent' | 'ghost';
+  size?: 'md' | 'sm';
+  block?: boolean;
+  arrow?: boolean;
+}
+const { href, label, variant = 'primary', size = 'md', block = false, arrow = true } = Astro.props;
+const rel = relFor(href);
+const cls = ['btn', `btn--${variant}`, size === 'sm' && 'btn--sm', block && 'btn--block'].filter(Boolean).join(' ');
+---
+{rel ? (
+  <a class={cls} href={href} rel={rel} target="_blank">{label}{arrow && <Icon name="arrow" />}</a>
+) : (
+  <a class={cls} href={href}>{label}{arrow && <Icon name="arrow" />}</a>
+)}
+
+<style is:global>
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;border:1.5px solid transparent;font:inherit;font-weight:650;font-size:1rem;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn .i{transition:transform .18s ease}
+  .btn:hover .i{transform:translateX(3px)}
+  .btn--primary{background:var(--brand);color:var(--brand-ink);box-shadow:0 10px 24px -12px color-mix(in srgb,var(--brand) 70%,transparent)}
+  .btn--accent{background:var(--accent);color:var(--accent-ink);box-shadow:0 12px 28px -12px var(--accent)}
+  .btn--ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+  .btn--ghost:hover{background:var(--surface)}
+  .btn--sm{min-height:42px;padding:0 16px;font-size:.92rem}
+  .btn--block{width:100%}
+</style>

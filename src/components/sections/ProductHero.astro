@@ -1,0 +1,45 @@
+---
+// Top of a product page: breadcrumb, title, the code box, call to action, chips and the phone illustration.
+import type { HubLocale, Product, ProductLocale } from '../../lib/model.ts';
+import Button from '../ui/Button.astro';
+import CodeBox from '../ui/CodeBox.astro';
+import Icon from '../ui/Icon.astro';
+import Md from '../ui/Md.astro';
+import PhoneMockup from '../ui/PhoneMockup.astro';
+interface Props {
+  product: Product;
+  L: ProductLocale;
+  H: HubLocale;
+  hubName: string;
+}
+const { product: p, L, H, hubName } = Astro.props;
+const { c, ui } = L;
+---
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <nav class="crumbs" aria-label={ui.breadcrumb}><ol><li><a href={H.href}>{hubName}</a></li><li aria-current="page">{p.name}</li></ol></nav>
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span><Md text={c.hero.eyebrow} /></p>
+      <h1 id="h1"><Md text={c.hero.h1} /></h1>
+      <p class="lead"><Md text={c.hero.lead} /></p>
+      <CodeBox code={p.code} ui={ui} anchor />
+      <div class="cta-row">
+        <Button href={String(L.vars.link)} label={c.hero.cta} />
+        <Button href="#how" label={c.hero.ctaSecondary} variant="ghost" arrow={false} />
+      </div>
+      <p class="fineprint"><Md text={c.hero.note} /></p>
+      <ul class="chips">{c.hero.chips.map((t) => <li><Icon name="check" /><Md text={t} /></li>)}</ul>
+    </div>
+    <div class="hero__art" aria-hidden="true">{c.mockup && <PhoneMockup {...c.mockup} />}</div>
+  </div>
+</section>
+
+<style is:global>
+  .hero__grid{display:grid;gap:56px;align-items:center}
+  @media (min-width:960px){.hero__grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}}
+  .chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0}
+  .chips li{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--accent-soft);font-size:.9rem;font-weight:550}
+  .chips .i{color:var(--accent);width:16px;height:16px}
+  @media (max-width:959px){.hero__art{max-width:300px;margin:0 auto}}
+  @media (max-width:520px){.hero__art{display:none}}
+</style>

@@ -1,0 +1,25 @@
+---
+// "How to get your bonus": step cards (+ HowTo structured data) and the call to action.
+import type { Product, ProductLocale } from '../../lib/model.ts';
+import Button from '../ui/Button.astro';
+import CopyButton from '../ui/CopyButton.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import Steps from '../ui/Steps.astro';
+interface Props {
+  product: Product;
+  L: ProductLocale;
+  alt: boolean;
+}
+const { product: p, L, alt } = Astro.props;
+const s = L.c.steps;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <SectionHead id="how-h" kicker={s.kicker} title={s.title} intro={s.intro} />
+    <Steps
+      items={s.items}
+      howTo={{ id: `${L.url}#howto`, name: s.title, description: s.intro, inLanguage: L.lang, totalTime: s.totalTime, currency: p.facts.referral.currency, pageUrl: L.url }}
+    />
+    <div class="cta-row cta-row--center"><Button href={String(L.vars.link)} label={L.c.hero.cta} /><CopyButton code={p.code} ui={L.ui} variant="ghost" /></div>
+  </div>
+</section>

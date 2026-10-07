@@ -1,24 +1,29 @@
 {
-  "name": "referral-codes-canada",
-  "version": "1.0.0",
+  "name": "referralcodescanada",
   "private": true,
+  "description": "Referral Codes Canada — bilingual referral-code pages (Astro, GitHub Pages). See README.md and docs/.",
   "type": "module",
-  "description": "Static generator for the Referral Codes Canada network (GitHub Pages). Shared engine — see docs/.",
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "serve": "node scripts/serve.mjs",
-    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
     "og": "node scripts/og.mjs",
     "check": "node scripts/check-live.mjs",
-    "sync": "node scripts/sync-engine.mjs",
     "new-product": "node scripts/new-product.mjs",
-    "new-site": "node scripts/new-site.mjs",
     "indexnow": "node scripts/indexnow.mjs"
   },
-  "devDependencies": {
-    "@resvg/resvg-js": "^2.6.2"
+  "dependencies": {
+    "astro": "^7.3.6",
+    "yaml": "^2.9.1"
   },
-  "engines": {
-    "node": ">=20"
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^22.20.5",
+    "typescript": "^6.0.3"
   }
 }

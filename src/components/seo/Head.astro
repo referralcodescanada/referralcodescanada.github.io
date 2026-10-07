@@ -1,0 +1,81 @@
+---
+// Everything in <head> that search engines and social networks read: title, description, canonical,
+// hreflang alternates, Open Graph / X cards, icons, Markdown version, verification, analytics, theme.
+import { SITE, type Theme } from '../../config/site.ts';
+import { jsonLd } from '../../lib/format.ts';
+import { themeCss } from '../../lib/theme.ts';
+import { URLS } from '../../lib/model.ts';
+
+export interface PageMeta {
+  lang: string;
+  title: string;
+  description: string;
+  keywords?: string[];
+  url: string;
+  defaultUrl: string;
+  alternates: { lang: string; url: string }[];
+  ogLocale: string;
+  ogAlternates: string[];
+  image: { url: string; alt: string; width: number; height: number } | null;
+  icon: string;
+  appleIcon?: string;
+  markdownUrl?: string | null;
+  theme: Theme;
+  jsonld: unknown;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+interface Props {
+  page: PageMeta;
+}
+const { page } = Astro.props;
+const v = SITE.verification;
+const img = page.image;
+const goat = SITE.analytics.goatcounter;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>{page.title}</title>
+<meta name="description" content={page.description} />
+{page.keywords?.length ? <meta name="keywords" content={page.keywords.join(', ')} /> : null}
+<meta name="robots" content={page.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+<meta name="author" content={SITE.name} />
+{!page.noindex && <link rel="canonical" href={page.url} />}
+{page.alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.url} />)}
+{page.alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={page.defaultUrl} />}
+<meta name="theme-color" content={page.theme.light.bg} media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content={page.theme.dark.bg} media="(prefers-color-scheme: dark)" />
+<meta property="og:type" content={page.type || 'website'} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={page.title} />
+<meta property="og:description" content={page.description} />
+<meta property="og:url" content={page.url} />
+<meta property="og:locale" content={page.ogLocale} />
+{page.ogAlternates.map((l) => <meta property="og:locale:alternate" content={l} />)}
+{img ? (
+  <>
+    <meta property="og:image" content={img.url} />
+    <meta property="og:image:width" content={String(img.width)} />
+    <meta property="og:image:height" content={String(img.height)} />
+    <meta property="og:image:alt" content={img.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={img.url} />
+    <meta name="twitter:image:alt" content={img.alt} />
+  </>
+) : (
+  <meta name="twitter:card" content="summary" />
+)}
+<meta name="twitter:title" content={page.title} />
+<meta name="twitter:description" content={page.description} />
+{v.google && <meta name="google-site-verification" content={v.google} />}
+{v.bing && <meta name="msvalidate.01" content={v.bing} />}
+<link rel="icon" href={page.icon} type={page.icon.endsWith('.svg') ? 'image/svg+xml' : 'image/png'} />
+{page.appleIcon && <link rel="apple-touch-icon" href={page.appleIcon} />}
+{page.markdownUrl && <link rel="alternate" type="text/markdown" href={page.markdownUrl} title="Markdown version" />}
+<link rel="sitemap" type="application/xml" href={URLS.href('/sitemap.xml')} />
+{goat && <script is:inline data-goatcounter={`https://${goat}.goatcounter.com/count`} async src="https://gc.zgo.at/count.js"></script>}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href={page.theme.fonts.googleFonts} />
+<style is:inline set:html={themeCss(page.theme)}></style>
+<script type="application/ld+json" is:inline set:html={jsonLd(page.jsonld)} />

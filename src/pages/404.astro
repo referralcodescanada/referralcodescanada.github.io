@@ -1,0 +1,44 @@
+---
+// Page shown by GitHub Pages for any unknown address (not indexed).
+import HubFooter from '../components/sections/HubFooter.astro';
+import Button from '../components/ui/Button.astro';
+import ProductCard from '../components/ui/ProductCard.astro';
+import Base from '../layouts/Base.astro';
+import { getModel } from '../lib/data.ts';
+import { URLS, cardFor } from '../lib/model.ts';
+
+const m = await getModel();
+const { hub } = m;
+const H = hub.locales[hub.def];
+const { ui } = H;
+const cards = m.summaries.map((s) => cardFor(s, hub.def));
+const page = {
+  lang: H.lang,
+  title: `${ui.notFoundTitle} — ${hub.name}`,
+  description: ui.notFoundText,
+  url: H.url,
+  defaultUrl: H.url,
+  alternates: [],
+  ogLocale: H.meta.og,
+  ogAlternates: [],
+  image: null,
+  icon: URLS.href(m.brand.favicon),
+  appleIcon: URLS.href(m.brand.appleIcon),
+  theme: hub.theme,
+  jsonld: { '@context': 'https://schema.org', '@type': 'WebPage', name: ui.notFoundTitle },
+  noindex: true,
+};
+const header = { ui, homeHref: H.href, homeLabel: hub.name, logoSrc: URLS.href(m.brand.mark), nav: [], langLinks: [] };
+---
+<Base page={page} header={header}>
+  <section class="hero hero--hub" aria-labelledby="h1">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>404</p>
+      <h1 id="h1">{ui.notFoundTitle}</h1>
+      <p class="lead">{ui.notFoundText}</p>
+      <div class="cta-row"><Button href={H.href} label={ui.backHome} /></div>
+    </div>
+  </section>
+  <section class="section section--tight"><div class="wrap"><ul class="cards">{cards.map((card) => <ProductCard card={card} ui={ui} />)}</ul></div></section>
+  <HubFooter slot="footer" hub={hub} H={H} cards={cards} logoSrc={URLS.href(m.brand.mark)} year={m.year} />
+</Base>

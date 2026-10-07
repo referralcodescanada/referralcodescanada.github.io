@@ -1,0 +1,28 @@
+---
+// Card linking to a guide (or back to the code page). The whole card is a link.
+import type { IconName } from '../../lib/icons.ts';
+import Icon from './Icon.astro';
+import Md from './Md.astro';
+interface Props {
+  href: string;
+  icon: IconName;
+  title: string;
+  text: string;
+  more: string;
+  /** Title already plain text (no inline markdown). */
+  plainTitle?: boolean;
+}
+const { href, icon, title, text, more, plainTitle = false } = Astro.props;
+---
+<li class="card guide-card"><span class="feature__icon"><Icon name={icon} /></span><h3><a href={href}>{plainTitle ? title : <Md text={title} />}</a></h3><p><Md text={text} /></p><span class="mini__link">{more} <Icon name="arrow" /></span></li>
+
+<style is:global>
+  .guides{list-style:none;display:grid;gap:18px;margin:0;padding:0}
+  @media (min-width:760px){.guides{grid-template-columns:repeat(3,1fr)}}
+  .guide-card{position:relative;display:flex;flex-direction:column;padding:26px;transition:transform .2s ease,box-shadow .2s ease}
+  .guide-card:hover{transform:translateY(-4px);box-shadow:0 26px 44px -30px color-mix(in srgb,var(--ink) 55%,transparent)}
+  .guide-card h3 a{text-decoration:none}
+  .guide-card h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+  .guide-card p{color:var(--muted);font-size:.98rem;flex:1}
+  .guide-card .mini__link{color:var(--accent)}
+</style>

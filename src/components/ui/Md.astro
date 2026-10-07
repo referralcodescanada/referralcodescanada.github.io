@@ -1,0 +1,9 @@
+---
+// Inline markdown text from the content files: **bold** *italic* `code` ==highlight== [text](url).
+import { md } from '../../lib/format.ts';
+interface Props {
+  text?: string;
+}
+const { text = '' } = Astro.props;
+---
+<Fragment set:html={md(text)} />

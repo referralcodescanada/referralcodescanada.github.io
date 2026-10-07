@@ -1,0 +1,77 @@
+---
+// Home page (one per language): every product as a card, how the site works, FAQ.
+import fs from 'node:fs';
+import HubFooter from '../components/sections/HubFooter.astro';
+import HubHero from '../components/sections/HubHero.astro';
+import Faq from '../components/ui/Faq.astro';
+import FeatureList from '../components/ui/FeatureList.astro';
+import ProductCard from '../components/ui/ProductCard.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import type { Loc } from '../lib/i18n.ts';
+import { hubGraph } from '../lib/jsonld.ts';
+import { URLS, cardFor, type Model } from '../lib/model.ts';
+import Base from './Base.astro';
+
+interface Props {
+  model: Model;
+  loc: Loc;
+}
+const { model: m, loc } = Astro.props;
+const { hub } = m;
+const H = hub.locales[loc];
+const { c, ui } = H;
+const others = hub.locs.filter((l) => l !== loc).map((l) => hub.locales[l]);
+const cards = m.summaries.map((s) => cardFor(s, loc));
+const ogFile = [`og-${loc}.png`, `og-${hub.def}.png`, 'og.png'].find((f) => fs.existsSync(`public/assets/${f}`));
+
+const page = {
+  lang: H.lang,
+  title: c.seo.title,
+  description: c.seo.description,
+  keywords: c.seo.keywords,
+  url: H.url,
+  defaultUrl: hub.locales[hub.def].url,
+  alternates: hub.locs.map((l) => ({ lang: hub.locales[l].lang, url: hub.locales[l].url })),
+  ogLocale: H.meta.og,
+  ogAlternates: others.map((o) => o.meta.og),
+  image: ogFile ? { url: URLS.abs(`/assets/${ogFile}`), width: 1200, height: 630, alt: c.seo.title } : null,
+  icon: URLS.href(m.brand.favicon),
+  appleIcon: URLS.href(m.brand.appleIcon),
+  markdownUrl: null,
+  theme: hub.theme,
+  jsonld: hubGraph(hub, H, cards),
+};
+const header = {
+  ui,
+  homeHref: H.href,
+  homeLabel: hub.name,
+  logoSrc: URLS.href(m.brand.mark),
+  nav: [
+    { href: '#codes', label: ui.nav.codes },
+    { href: '#faq', label: ui.nav.faq },
+  ],
+  langLinks: others.map((o) => ({ href: o.href, lang: o.lang, label: o.meta.label, short: o.meta.short })),
+};
+---
+<Base page={page} header={header}>
+  <HubHero H={H} logoSrc={URLS.href(m.brand.full)} />
+  <section class="section section--tight" id="codes" aria-labelledby="codes-h">
+    <div class="wrap">
+      <SectionHead id="codes-h" title={c.listTitle} intro={c.listIntro} />
+      <ul class="cards">{cards.map((card) => <ProductCard card={card} ui={ui} />)}</ul>
+    </div>
+  </section>
+  <section class="section section--alt" aria-labelledby="about-h">
+    <div class="wrap">
+      <SectionHead id="about-h" title={c.about.title} />
+      <FeatureList items={c.about.items} />
+    </div>
+  </section>
+  <section class="section" id="faq" aria-labelledby="faq-h">
+    <div class="wrap narrow">
+      <SectionHead id="faq-h" title={c.faq.title} />
+      <Faq items={c.faq.items} schemaId={`${H.url}#faq`} />
+    </div>
+  </section>
+  <HubFooter slot="footer" hub={hub} H={H} cards={cards} logoSrc={URLS.href(m.brand.mark)} year={m.year} />
+</Base>

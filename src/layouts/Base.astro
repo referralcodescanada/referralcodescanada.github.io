@@ -1,0 +1,45 @@
+---
+// Skeleton of every page: <head>, header, <main>, footer, mobile bar, toast.
+import Head, { type PageMeta } from '../components/seo/Head.astro';
+import Header from '../components/layout/Header.astro';
+import Toast from '../components/ui/Toast.astro';
+import type { UiStrings } from '../lib/i18n.ts';
+import '../styles/global.css';
+
+interface Props {
+  page: PageMeta;
+  /** Product slug for analytics events (<body data-product>). */
+  product?: string;
+  header: {
+    ui: UiStrings;
+    homeHref: string;
+    homeLabel: string;
+    logoSrc: string;
+    nav: { href: string; label: string }[];
+    langLinks: { href: string; lang: string; label: string; short: string }[];
+  };
+}
+const { page, product, header } = Astro.props;
+---
+<!doctype html>
+<html lang={page.lang}>
+  <head>
+    <Head page={page} />
+  </head>
+  <body data-product={product}>
+    <Header {...header} />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+    <slot name="after" />
+    <Toast />
+    <script>
+      import { track } from '../lib/track.ts';
+      // Count clicks on referral links (rel="sponsored"), when analytics are configured.
+      document.addEventListener('click', (e) => {
+        if ((e.target as Element | null)?.closest('a[rel~="sponsored"]')) track('signup-click');
+      });
+    </script>
+  </body>
+</html>

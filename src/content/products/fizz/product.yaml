@@ -1,0 +1,49 @@
+# Fizz → https://referralcodescanada.github.io/fizz/  (the folder name is the address)
+# The facts of the offer, written once for every language. Re-check them on the official pages,
+# then bump lastVerified. Copy: en.yaml / fr.yaml · guides: guides/<id>/ · schema: src/lib/schema.ts
+draft: false
+order: 2
+defaultLocale: en
+lastVerified: "2026-10-07"
+firstPublished: "2026-10-07"
+brand:
+  name: Fizz
+  sameAs:
+    - https://fizz.ca
+referral:
+  code: DNSFX
+  url: https://fizz.ca/en/mobile
+  urls:
+    en: https://fizz.ca/en/mobile
+    fr: https://fizz.ca/fr/mobile
+  bonus: 25
+  minDeposit: 20
+  currency: CAD
+  codeSpelled:
+    en: D · N · S · F · X
+    fr: D · N · S · F · X
+theme:
+  light:
+    bg: "#F6F4FB"
+    surface: "#FFFFFF"
+    ink: "#1B1530"
+    muted: "#5E5874"
+    line: "#E3DEF0"
+    brand: "#2A1B54"
+    brandInk: "#FFFFFF"
+    accent: "#6A3BE0"
+    accentInk: "#FFFFFF"
+    accentSoft: "#ECE4FD"
+    highlight: "#C8F25A"
+  dark:
+    bg: "#100C1C"
+    surface: "#1A1430"
+    ink: "#F1EEFA"
+    muted: "#A7A0BE"
+    line: "#2D2547"
+    brand: "#F1EEFA"
+    brandInk: "#1B1530"
+    accent: "#A98BFF"
+    accentInk: "#100C1C"
+    accentSoft: "#2A2050"
+    highlight: "#8DB82A"

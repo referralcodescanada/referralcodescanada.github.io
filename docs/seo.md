@@ -2,12 +2,12 @@
 
 ## Une seule fois
 
-- [ ] **Google Search Console** : propriété **préfixe d'URL** `https://referralcodescanada.github.io/`. Elle couvre l'accueil et tous les produits. Vérification par **fichier HTML** : le fichier `google9224f360ccee5731.html` est dans `public/` de chaque dépôt. Ne jamais le supprimer.
+- [ ] **Google Search Console** : propriété **préfixe d'URL** `https://referralcodescanada.github.io/`. Elle couvre l'accueil et tous les produits. Vérification par **fichier HTML** : le fichier `google9224f360ccee5731.html` est dans `public/`. Ne jamais le supprimer.
   - Une propriété **Domaine** (enregistrement DNS TXT) est **impossible** sur `github.io` : on ne contrôle pas le DNS de github.io. Elle ne sera possible qu'avec un domaine personnalisé.
   - Les propriétés par produit (`…/wealthsimple/`) sont facultatives, mais permettent de voir chaque produit séparément.
 - [ ] Soumettre les sitemaps : `sitemap.xml` (racine, c'est un index qui inclut tous les produits). Dans le champ, taper le nom seulement, sans `/` devant.
 - [ ] **Bing Webmaster Tools** : importer depuis Search Console. Bing alimente la recherche de ChatGPT. IndexNow est déjà automatique.
-- [ ] **GoatCounter** (optionnel) : créer le site `referralcodescanada`, mettre `analytics.goatcounter` dans `hub/hub.config.mjs`, puis `npm run sync` et pousser.
+- [ ] **GoatCounter** (optionnel) : créer le site `referralcodescanada`, mettre `analytics.goatcounter` dans `src/config/site.ts`, puis pousser.
 
 ## Pour chaque nouvelle page
 
@@ -17,7 +17,7 @@
 ## Chaque mois (skill `verify-offer`)
 
 - [ ] Revérifier l'offre sur les pages officielles, corriger, mettre à jour `lastVerified`.
-- [ ] `npm run check` dans chaque dépôt.
+- [ ] `npm run check`.
 - [ ] Search Console : pages indexées, requêtes qui génèrent des impressions. Une requête qui a des impressions mais peu de clics est une idée de guide (skill `add-guide`) ou un titre à améliorer.
 
 ## Ce qui fait vraiment monter le classement

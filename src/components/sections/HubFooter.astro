@@ -1,0 +1,30 @@
+---
+// Footer of the home page and the 404 page.
+import { SITE } from '../../config/site.ts';
+import { URLS, type Card, type Hub, type HubLocale } from '../../lib/model.ts';
+import Footer, { type FooterColumn } from '../layout/Footer.astro';
+interface Props {
+  hub: Hub;
+  H: HubLocale;
+  cards: Card[];
+  logoSrc: string;
+  year: number;
+}
+const { hub, H, cards, logoSrc, year } = Astro.props;
+const { ui } = H;
+const columns: FooterColumn[] = [
+  { title: ui.allCodes, links: cards.map((s) => ({ href: s.href, label: `${s.name} — ${s.code}` })) },
+  {
+    title: ui.machine,
+    links: [
+      { href: URLS.href('/llms.txt'), label: 'llms.txt' },
+      { href: URLS.href('/llms-full.txt'), label: 'llms-full.txt' },
+      { href: URLS.href('/sitemap.xml'), label: 'sitemap.xml' },
+    ],
+  },
+  { title: ui.language, links: hub.locs.map((l) => ({ href: hub.locales[l].href, label: hub.locales[l].meta.label, lang: hub.locales[l].lang })) },
+];
+---
+<Footer homeHref={H.href} homeLabel={hub.name} logoSrc={logoSrc} disclaimer={H.c.footer.disclaimer} columns={columns}>
+  <Fragment slot="meta">{`© ${year} ${hub.name}`}{SITE.github && <>{' · '}<a href={SITE.github} rel="noopener" target="_blank">GitHub</a></>}</Fragment>
+</Footer>

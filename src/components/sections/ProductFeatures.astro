@@ -1,0 +1,17 @@
+---
+// Optional section (off by default): pages stay focused on using the code — see CLAUDE.md.
+import type { ProductTexts } from '../../lib/schema.ts';
+import FeatureList from '../ui/FeatureList.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Props {
+  features: NonNullable<ProductTexts['features']>;
+  alt: boolean;
+}
+const { features: f, alt } = Astro.props;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="why" aria-labelledby="why-h">
+  <div class="wrap">
+    <SectionHead id="why-h" kicker={f.kicker} title={f.title} intro={f.intro} />
+    <FeatureList items={f.items} />
+  </div>
+</section>

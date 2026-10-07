@@ -1,0 +1,52 @@
+---
+// The network logo as a 3D gold coin: logo on the front, CoinBack on the back, a reeded edge made of
+// stacked discs. Animated by coin.ts (drop-in, idle turn, mouse tilt, click = hop + flip to the other side);
+// static for visitors who ask for reduced motion.
+import CoinBack from './CoinBack.astro';
+interface Props {
+  src: string;
+  alt: string;
+  legend: { top: string; bottom: string };
+}
+const { src, alt, legend } = Astro.props;
+const EDGE_LAYERS = 16;
+---
+<div class="coin" data-coin>
+  <span class="coin__shadow" aria-hidden="true"><i></i></span>
+  <div class="coin__float"><div class="coin__toss"><div class="coin__spin"><div class="coin__tilt">
+    <div class="coin__edge" aria-hidden="true">{Array.from({ length: EDGE_LAYERS }, (_, i) => <i style={`--i:${i}`}></i>)}</div>
+    <div class="coin__face coin__face--back" aria-hidden="true"><CoinBack top={legend.top} bottom={legend.bottom} /></div>
+    <div class="coin__face coin__face--front"><img src={src} width="240" height="240" alt={alt} draggable="false" /><span class="coin__sheen" aria-hidden="true"></span><span class="coin__band" aria-hidden="true"></span></div>
+    <span class="coin__glint" aria-hidden="true"></span>
+  </div></div></div></div>
+</div>
+
+<style is:global>
+  .coin{--size:240px;--t:calc(var(--size) * .07);position:relative;width:var(--size);aspect-ratio:1;justify-self:center;perspective:1000px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+  .coin::before{content:"";position:absolute;inset:-30%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(242,191,63,.32),transparent);animation:coin-glow 6s ease-in-out infinite}
+  .coin__float,.coin__toss,.coin__spin,.coin__tilt,.coin__edge{position:absolute;inset:0;transform-style:preserve-3d}
+  .coin__float{animation:coin-float 6s ease-in-out infinite}
+  .coin__edge i{position:absolute;inset:0;border-radius:50%;background:linear-gradient(170deg,rgba(255,255,255,.35),transparent 45%,rgba(60,35,0,.4)),repeating-conic-gradient(#e9c25c 0 1deg,#9a6c18 1deg 2deg);transform:translateZ(calc(var(--t) * (var(--i) / 15 - .5)))}
+  .coin__face{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:var(--coin-gold);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),inset 0 -4px 10px rgba(80,50,0,.45);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+  .coin__face::before{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(rgba(90,60,8,.55) 0 1.3deg,transparent 1.3deg 4deg);-webkit-mask:radial-gradient(closest-side,transparent 89.5%,#000 90.5% 96%,transparent 97%);mask:radial-gradient(closest-side,transparent 89.5%,#000 90.5% 96%,transparent 97%)}
+  .coin__face>img,.coin__face>svg{position:absolute;inset:7%;width:86%;height:86%;border-radius:50%;box-shadow:0 0 0 2px rgba(110,72,8,.6),0 2px 5px rgba(0,0,0,.35)}
+  .coin__face--front{transform:translateZ(calc(var(--t) / 2 + .5px))}
+  .coin__face--back{transform:rotateY(180deg) translateZ(calc(var(--t) / 2 + .5px))}
+  .coin__sheen{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(circle at var(--px,32%) var(--py,26%),rgba(255,255,255,.55),transparent 45%);mix-blend-mode:overlay}
+  .coin__band{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.8) 50%,transparent 68%);mix-blend-mode:overlay;transform:translateX(-130%)}
+  .coin__glint{position:absolute;top:5%;right:15%;width:16%;aspect-ratio:1;background:radial-gradient(closest-side,#fff 40%,rgba(255,255,255,0));clip-path:polygon(50% 0,57% 43%,100% 50%,57% 57%,50% 100%,43% 57%,0 50%,43% 43%);transform:translateZ(calc(var(--t) / 2 + 3px));scale:0;pointer-events:none}
+  .coin__shadow{position:absolute;left:14%;right:14%;bottom:-15%;height:10%;animation:coin-shadow 6s ease-in-out infinite}
+  .coin__shadow i{position:absolute;inset:0;border-radius:50%;background:radial-gradient(closest-side,rgba(40,28,0,.32),transparent)}
+  @media (prefers-color-scheme:dark){.coin__shadow i{background:radial-gradient(closest-side,rgba(0,0,0,.7),transparent)}.coin::before{background:radial-gradient(closest-side,rgba(242,191,63,.22),transparent)}}
+  .coin.is-pre{opacity:0}
+  .coin.is-paused::before,.coin.is-paused .coin__float,.coin.is-paused .coin__shadow{animation-play-state:paused}
+  @keyframes coin-float{0%,100%{transform:translateY(0) rotateX(5deg) rotateY(-16deg)}50%{transform:translateY(-14px) rotateX(-4deg) rotateY(16deg)}}
+  @keyframes coin-shadow{50%{transform:scale(.84);opacity:.65}}
+  @keyframes coin-glow{50%{transform:scale(.92);opacity:.65}}
+  @media (max-width:899px){.coin{--size:124px;order:-1;justify-self:start;margin:14px 0 -8px 4px}}
+</style>
+
+<script>
+  import { initCoin } from './coin.ts';
+  document.querySelectorAll<HTMLElement>('[data-coin]').forEach(initCoin);
+</script>

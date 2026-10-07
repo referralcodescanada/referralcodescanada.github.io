@@ -1,0 +1,18 @@
+---
+// Title block of a section: optional kicker, the <h2> (with its id for aria-labelledby) and an optional intro.
+import Md from './Md.astro';
+interface Props {
+  id: string;
+  kicker?: string;
+  title: string;
+  intro?: string;
+  /** Plain text (no inline markdown) — for interface strings. */
+  plain?: boolean;
+}
+const { id, kicker, title, intro, plain = false } = Astro.props;
+---
+<div class="section__head">
+  {kicker && <p class="kicker">{kicker}</p>}
+  <h2 id={id}>{plain ? title : <Md text={title} />}</h2>
+  {intro && <p class="section__intro">{plain ? intro : <Md text={intro} />}</p>}
+</div>

@@ -1,0 +1,54 @@
+# Wealthsimple → https://referralcodescanada.github.io/wealthsimple/  (the folder name is the address)
+# The facts of the offer, written once for every language. Re-check them on the official pages,
+# then bump lastVerified. Copy: en.yaml / fr.yaml · guides: guides/<id>/ · schema: src/lib/schema.ts
+draft: false
+order: 1
+defaultLocale: en
+lastVerified: "2026-10-06"
+firstPublished: "2026-10-06"
+redirects:
+  - from: guides/find-your-referral-code/
+    to: ""
+  - from: fr/guides/trouver-son-code-de-parrainage/
+    to: fr/
+  - from: guides/transfer-account-to-wealthsimple/
+    to: ""
+  - from: fr/guides/transferer-compte-vers-wealthsimple/
+    to: fr/
+brand:
+  name: Wealthsimple
+  sameAs:
+    - https://www.wealthsimple.com
+    - https://en.wikipedia.org/wiki/Wealthsimple
+referral:
+  code: 6QL89Q
+  url: https://wealthsimple.com/invite/6QL89Q
+  bonus: 25
+  minDeposit: 100
+  currency: CAD
+  codeSpelled:
+    en: six · Q · L · eight · nine · Q
+    fr: six · Q · L · huit · neuf · Q
+theme:
+  light:
+    bg: "#F6F3EC"
+    ink: "#141414"
+    muted: "#5B5B57"
+    line: "#E4DFD3"
+    brand: "#141414"
+    accent: "#0E7C4A"
+    accentInk: "#FFFFFF"
+    accentSoft: "#DCF0E3"
+    highlight: "#F4C553"
+  dark:
+    bg: "#0E100F"
+    surface: "#171A18"
+    ink: "#F3F1EA"
+    muted: "#A7A9A3"
+    line: "#28302B"
+    brand: "#F3F1EA"
+    brandInk: "#111311"
+    accent: "#3DCB8A"
+    accentInk: "#0E100F"
+    accentSoft: "#15301F"
+    highlight: "#C99A2E"

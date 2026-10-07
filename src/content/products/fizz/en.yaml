@@ -1,0 +1,140 @@
+# fizz — English copy
+# Placeholders: {brand} {code} {codeSpelled} {link} {linkDisplay} {bonus} {bonusCents} {minDeposit}
+#   {minDepositCents} {balanceDemo} {year} {verifiedDate} {month} + every key of `links` below.
+# Inline formatting: **bold** *italic* `code` ==highlight== [text](url). Schema: src/lib/schema.ts
+links:
+  officialUrl: https://fizz.ca/en
+  termsUrl: https://fizz.ca/en/faq/how-do-i-invite-friends-to-join-fizz
+  rewardsUrl: https://fizz.ca/en/faq/what-kind-of-rewards-do-i-earn-for-inviting-friends
+  inviteUrl: https://fizz.ca/en/invite-friends
+  mobileUrl: https://fizz.ca/en/mobile
+  internetUrl: https://fizz.ca/en/internet
+seo:
+  title: "Fizz Referral Code {year}: {code} — Get a {bonus} Bonus"
+  description: Use Fizz referral code {code} on your first mobile or Internet plan and get a {bonus} bonus after your second payment. Steps, rules & FAQ. Verified {month}.
+  keywords:
+    - Fizz referral code
+    - Fizz promo code
+    - Fizz code
+    - Fizz $25 bonus
+    - Fizz mobile referral
+    - Fizz internet referral code
+    - "{code}"
+  imageAlt: Fizz referral code {code} — {bonus} bonus
+og:
+  eyebrow: WORKING CODE
+  line1: Fizz
+  line2: referral code
+  badgeBottom: each
+hub:
+  summary: "{bonus} each on your first Fizz mobile or Internet plan."
+hero:
+  eyebrow: Working code · verified {verifiedDate}
+  h1: "Fizz referral code: =={code}=="
+  lead: Enter **{code}** when you activate your first Fizz plan — mobile or Home Internet — and you’ll get a **{bonus} bonus** on your plan payments once you’ve completed two months with Fizz.
+  cta: Build my Fizz plan
+  ctaSecondary: How it works
+  note: "Fizz has no referral link: copy **{code}** and paste it in the referral code field before you complete your order."
+  chips:
+    - "{bonus} for you, {bonus} for me"
+    - Mobile or Home Internet
+    - Plan of {minDeposit}+/month
+mockup:
+  account: My Fizz plan
+  balanceLabel: Referral bonus balance
+  balance: "{bonusCents}"
+  notifTitle: Referral bonus
+  notifBody: Code {code} · 2 months completed
+  amount: +{bonusCents}
+  rows:
+    - label: Referral code
+      value: "{code} ✓"
+    - label: Months of service
+      value: 2 ✓
+    - label: Bonus
+      value: On next payment
+  sticker: "{bonus}"
+  stickerSub: each
+facts:
+  kicker: TL;DR
+  title: Quick answer
+  intro: The **Fizz referral code is {code}**. Here is everything about the {bonus} referral bonus, at a glance.
+  items:
+    - label: Referral code
+      value: "**{code}** ({codeSpelled}) — not case sensitive"
+    - label: Your bonus
+      value: "{bonus}, applied to your Fizz plan payments"
+    - label: When
+      value: Once you’ve completed 2 months of service (after your 2nd monthly payment)
+    - label: Minimum plan
+      value: "{minDeposit}/month before taxes, after discounts"
+    - label: Works for
+      value: "Your first Fizz plan: mobile or Home Internet"
+    - label: Where to enter it
+      value: "Mobile: order summary, before completing activation · Internet: before the payment step"
+    - label: Add it later?
+      value: No — it can’t be applied retroactively
+    - label: With a promo code?
+      value: No — promo codes can’t be combined with a referral code
+    - label: Last verified
+      value: "{verifiedDate}"
+steps:
+  kicker: Step by step
+  title: How to get your {bonus} Fizz referral bonus
+  intro: Four steps. The only thing that can go wrong is forgetting the code before you finish your order — Fizz can’t add it afterwards.
+  totalTime: PT15M
+  items:
+    - title: Copy the code
+      text: Copy **{code}** (five characters, not case sensitive).
+    - title: Build your first plan
+      text: Customize a [mobile plan]({mobileUrl}) or choose a [Home Internet plan]({internetUrl}) of at least {minDeposit}/month before taxes.
+    - title: Enter the code before you finish
+      text: "Mobile: paste **{code}** in the **order summary** before completing activation. Internet: enter it **before the payment step**."
+    - title: Complete two months
+      text: Keep your plan active. After your second monthly payment, your {bonus} is applied to your upcoming payment.
+rules:
+  kicker: Fine print
+  title: The rules, in plain English
+  intro: A summary of Fizz’s referral program. Fizz’s [official FAQ]({termsUrl}) always takes precedence.
+  items:
+    - The code only works on your **first Fizz plan** — each person can be invited once.
+    - Your plan must be at least **{minDeposit}/month**, before taxes and after applicable discounts.
+    - The bonus is applied once you’ve completed **two months of service**, if both you and your referrer still have an active plan.
+    - The bonus is a **credit on your monthly payments**, not cash. Any leftover balance carries to the next payment.
+    - Forgot the code? It **can’t be added retroactively**, including on a second plan.
+    - The amount can **vary by province** and depends on the offer in effect when you subscribe.
+    - A **promo code can’t be combined** with a referral code.
+    - If your plan is deactivated, pending bonuses and your remaining balance are lost.
+  note: Summarized from Fizz’s referral FAQ on {verifiedDate}. Offers can change at any time.
+faq:
+  kicker: FAQ
+  title: Fizz referral code — FAQ
+  items:
+    - q: What is the Fizz referral code?
+      a: The Fizz referral code is **{code}**. Enter it when you activate your first Fizz plan (mobile or Home Internet) to get a {bonus} bonus once you’ve completed two months of service.
+    - q: How much is the Fizz referral bonus in {year}?
+      a: Fizz currently offers **{bonus} for you and {bonus} for the member who invited you**. The amount can vary by province and with the offer in effect when you subscribe — check Fizz’s [referral page]({inviteUrl}).
+    - q: When do I get my {bonus}?
+      a: After your **second monthly payment**. Both bonuses stay pending until then, and yours is applied toward your upcoming payment.
+    - q: Where do I enter the Fizz referral code?
+      a: For a mobile plan, in the **order summary** before you complete your activation. For Home Internet, **before the payment step**. Fizz notes the code can’t be entered when ordering a physical SIM card.
+    - q: Can I add a Fizz referral code after signing up?
+      a: No. Fizz can’t apply a referral code retroactively, and the field doesn’t appear on a second plan. Enter **{code}** before you finish your first order.
+    - q: Does the code work for Fizz Home Internet?
+      a: Yes — as long as it’s your **first Fizz plan**. If you already have a Fizz mobile plan, you can’t use a referral code on Internet (and vice versa).
+    - q: Is there a minimum plan price?
+      a: "Yes: your plan must be at least **{minDeposit}/month**, before taxes and after applicable discounts."
+    - q: Is there a Fizz promo code instead?
+      a: Fizz sometimes offers promo codes for mobile plans, but **a promo code can’t be combined with a referral code** — you choose one or the other. See Fizz’s [FAQ on bonuses and promo codes]({rewardsUrl}).
+    - q: Is the bonus paid in cash?
+      a: No. It’s a credit applied to your Fizz plan payments; any remaining balance is used on the following payments.
+    - q: Does the code work in Quebec and other provinces?
+      a: Yes, wherever Fizz is offered. Each member receives the bonus amount in effect in their own region at the time of subscription.
+    - q: Is {code} a legit, working Fizz code?
+      a: Yes. **{code}** is a personal referral code from an active Fizz member, last verified on {verifiedDate}. This site isn’t affiliated with Fizz; when you use the code, the member who shared it also gets a bonus — that’s how the program works.
+finalCta:
+  title: Ready? Your {bonus} is waiting.
+  text: Copy **{code}**, build your plan, and paste the code before you finish your order.
+  button: Build my Fizz plan
+footer:
+  disclaimer: "Independent page, not affiliated with, endorsed or sponsored by Fizz. Fizz is a trademark of its owner. This page shares a personal referral code: when you use it, both you and the referrer receive a bonus. Not financial advice. Offer summarized from Fizz’s public FAQ — always check the [official referral FAQ]({termsUrl})."

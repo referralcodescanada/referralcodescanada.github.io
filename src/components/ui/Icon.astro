@@ -1,0 +1,10 @@
+---
+// Inline stroke icon by name (list in src/lib/icons.ts).
+import { iconSvg, type IconName } from '../../lib/icons.ts';
+interface Props {
+  name: IconName;
+  class?: string;
+}
+const { name, class: cls = 'i' } = Astro.props;
+---
+<Fragment set:html={iconSvg(name, cls)} />

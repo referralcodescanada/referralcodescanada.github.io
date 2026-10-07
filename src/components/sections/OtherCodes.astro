@@ -1,0 +1,19 @@
+---
+// "More Canadian referral codes": cards of the other products.
+import type { UiStrings } from '../../lib/i18n.ts';
+import type { Card } from '../../lib/model.ts';
+import ProductCard from '../ui/ProductCard.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Props {
+  cards: Card[];
+  ui: UiStrings;
+  alt: boolean;
+}
+const { cards, ui, alt } = Astro.props;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="more-codes" aria-labelledby="more-h">
+  <div class="wrap">
+    <SectionHead id="more-h" title={ui.moreCodes} intro={ui.moreCodesIntro} plain />
+    <ul class="cards">{cards.map((card) => <ProductCard card={card} ui={ui} />)}</ul>
+  </div>
+</section>

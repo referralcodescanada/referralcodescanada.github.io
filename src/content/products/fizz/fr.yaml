@@ -1,0 +1,143 @@
+# fizz — textes en français (canadien)
+# Placeholders: {brand} {code} {codeSpelled} {link} {linkDisplay} {bonus} {bonusCents} {minDeposit}
+#   {minDepositCents} {balanceDemo} {year} {verifiedDate} {month} + every key of `links` below.
+# Inline formatting: **bold** *italic* `code` ==highlight== [text](url). Schema: src/lib/schema.ts
+links:
+  officialUrl: https://fizz.ca/fr
+  termsUrl: https://fizz.ca/fr/faq/comment-inviter-des-amis-chez-fizz
+  rewardsUrl: https://fizz.ca/fr/faq/quelles-recompenses-vais-je-recevoir-en-invitant-des-amis
+  inviteUrl: https://fizz.ca/fr/inviter-des-amis
+  mobileUrl: https://fizz.ca/fr/mobile
+  internetUrl: https://fizz.ca/fr/internet
+seo:
+  title: "Code de référence Fizz {year} : {code} — Prime de {bonus}"
+  description: "Code de référence Fizz {code} : obtenez une prime de {bonus} sur votre premier forfait mobile ou Internet, après votre 2e paiement. Étapes, règles et FAQ."
+  keywords:
+    - code de référence Fizz
+    - code de parrainage Fizz
+    - code promo Fizz
+    - code Fizz
+    - prime de référence Fizz
+    - Fizz 25 $
+    - "{code}"
+  imageAlt: Code de référence Fizz {code} — prime de {bonus}
+ui:
+  codeLabel: Code de référence
+  quickActions: Raccourci du code de référence
+og:
+  eyebrow: CODE VALIDE
+  line1: Code de référence
+  line2: Fizz
+  badgeBottom: chacun
+hub:
+  summary: "{bonus} chacun sur votre premier forfait mobile ou Internet Fizz."
+hero:
+  eyebrow: Code valide · vérifié le {verifiedDate}
+  h1: "Code de référence Fizz : =={code}=="
+  lead: Entrez **{code}** à l’activation de votre premier forfait Fizz — mobile ou Internet résidentiel — et obtenez une **prime de {bonus}** sur vos paiements dès que vous avez complété deux mois chez Fizz.
+  cta: Créer mon forfait Fizz
+  ctaSecondary: Comment ça marche
+  note: "Fizz n’a pas de lien de référence : copiez **{code}** et collez-le dans le champ prévu avant de terminer votre commande."
+  chips:
+    - "{bonus} pour vous, {bonus} pour moi"
+    - Mobile ou Internet résidentiel
+    - Forfait de {minDeposit} et plus par mois
+mockup:
+  account: Mon forfait Fizz
+  balanceLabel: Solde de primes de référence
+  balance: "{bonusCents}"
+  notifTitle: Prime de référence
+  notifBody: Code {code} · 2 mois complétés
+  amount: +{bonusCents}
+  rows:
+    - label: Code de référence
+      value: "{code} ✓"
+    - label: Mois de service
+      value: 2 ✓
+    - label: Prime
+      value: Au prochain paiement
+  sticker: "{bonus}"
+  stickerSub: chacun
+facts:
+  kicker: En bref
+  title: Réponse rapide
+  intro: Le **code de référence Fizz est {code}**. Voici l’essentiel sur la prime de référence de {bonus}, en un coup d’œil.
+  items:
+    - label: Code de référence
+      value: "**{code}** ({codeSpelled}) — majuscules ou minuscules, peu importe"
+    - label: Votre prime
+      value: "{bonus}, appliqués sur vos paiements de forfait Fizz"
+    - label: Quand
+      value: Après deux mois de service (à votre 2e paiement mensuel)
+    - label: Forfait minimum
+      value: "{minDeposit} par mois avant taxes, après rabais"
+    - label: Pour quoi
+      value: "Votre premier forfait Fizz : mobile ou Internet résidentiel"
+    - label: Où l’entrer
+      value: "Mobile : résumé de la commande, avant de terminer l’activation · Internet : avant l’étape du paiement"
+    - label: L’ajouter plus tard?
+      value: Non — il ne peut pas être appliqué rétroactivement
+    - label: Avec un code promo?
+      value: Non — un code promo ne se combine pas avec un code de référence
+    - label: Dernière vérification
+      value: "{verifiedDate}"
+steps:
+  kicker: Étape par étape
+  title: Comment obtenir votre prime de référence Fizz de {bonus}
+  intro: "Quatre étapes. Le seul piège : oublier le code avant de terminer votre commande — Fizz ne peut pas l’ajouter après."
+  totalTime: PT15M
+  items:
+    - title: Copiez le code
+      text: Copiez **{code}** (cinq caractères, majuscules ou minuscules).
+    - title: Créez votre premier forfait
+      text: Personnalisez un [forfait mobile]({mobileUrl}) ou choisissez un [forfait Internet résidentiel]({internetUrl}) d’au moins {minDeposit} par mois avant taxes.
+    - title: Entrez le code avant de terminer
+      text: "Mobile : collez **{code}** dans le **résumé de la commande** avant de terminer l’activation. Internet : entrez-le **avant l’étape du paiement**."
+    - title: Complétez deux mois
+      text: Gardez votre forfait actif. Après votre deuxième paiement mensuel, vos {bonus} sont appliqués sur votre prochain paiement.
+rules:
+  kicker: Les petits caractères
+  title: Les règles, en clair
+  intro: Un résumé du programme de référence Fizz. La [FAQ officielle]({termsUrl}) de Fizz a toujours préséance.
+  items:
+    - Le code fonctionne seulement sur votre **premier forfait Fizz** — chaque personne ne peut être invitée qu’une fois.
+    - Votre forfait doit être d’au moins **{minDeposit} par mois**, avant taxes et après les rabais applicables.
+    - La prime est appliquée quand vous avez complété **deux mois de service**, si vous et la personne qui vous a invité avez encore un forfait actif.
+    - La prime est un **crédit sur vos paiements mensuels**, pas de l’argent. Le solde restant passe au paiement suivant.
+    - Oublié le code? Il **ne peut pas être ajouté rétroactivement**, ni sur un deuxième forfait.
+    - Le montant peut **varier selon la province** et l’offre en vigueur au moment de l’abonnement.
+    - Un **code promo ne peut pas être combiné** avec un code de référence.
+    - Si votre forfait est désactivé, les primes en attente et votre solde sont perdus.
+  note: Résumé de la FAQ sur le programme de référence Fizz au {verifiedDate}. Les offres peuvent changer en tout temps.
+faq:
+  kicker: FAQ
+  title: Code de référence Fizz — FAQ
+  items:
+    - q: Quel est le code de référence Fizz?
+      a: Le code de référence Fizz est **{code}**. Entrez-le à l’activation de votre premier forfait Fizz (mobile ou Internet résidentiel) pour obtenir une prime de {bonus} après deux mois de service.
+    - q: Combien vaut la prime de référence Fizz en {year}?
+      a: Fizz offre présentement **{bonus} pour vous et {bonus} pour le membre qui vous a invité**. Le montant peut varier selon la province et l’offre en vigueur à l’abonnement — consultez la [page de référence]({inviteUrl}) de Fizz.
+    - q: Quand vais-je recevoir mes {bonus}?
+      a: Après votre **deuxième paiement mensuel**. Les deux primes sont en attente jusque-là, puis la vôtre est appliquée sur votre prochain paiement.
+    - q: Où entrer le code de référence Fizz?
+      a: Pour un forfait mobile, dans le **résumé de la commande** avant de terminer l’activation. Pour l’Internet résidentiel, **avant l’étape du paiement**. Fizz précise que le code ne peut pas être entré lors de la commande d’une carte SIM physique.
+    - q: Puis-je ajouter un code de référence Fizz après mon inscription?
+      a: Non. Fizz ne peut pas appliquer un code de référence rétroactivement, et le champ n’apparaît pas pour un deuxième forfait. Entrez **{code}** avant de terminer votre première commande.
+    - q: Le code fonctionne-t-il pour l’Internet résidentiel Fizz?
+      a: Oui — pourvu que ce soit votre **premier forfait Fizz**. Si vous avez déjà un forfait mobile Fizz, vous ne pouvez pas utiliser de code de référence pour l’Internet (et vice versa).
+    - q: Y a-t-il un prix minimum de forfait?
+      a: "Oui : votre forfait doit être d’au moins **{minDeposit} par mois**, avant taxes et après les rabais applicables."
+    - q: Existe-t-il plutôt un code promo Fizz?
+      a: "Fizz offre parfois des codes promo pour les forfaits mobiles, mais **un code promo ne peut pas être combiné avec un code de référence** : c’est l’un ou l’autre. Voir la [FAQ de Fizz sur les primes et codes promo]({rewardsUrl})."
+    - q: La prime est-elle versée en argent?
+      a: Non. C’est un crédit appliqué sur vos paiements de forfait Fizz; le solde restant sert aux paiements suivants.
+    - q: Le code fonctionne-t-il au Québec et dans les autres provinces?
+      a: Oui, partout où Fizz est offert. Chaque membre reçoit le montant de prime en vigueur dans sa propre région au moment de l’abonnement.
+    - q: Le code {code} est-il légitime et valide?
+      a: Oui. **{code}** est le code de référence personnel d’un membre Fizz actif, vérifié le {verifiedDate}. Ce site n’est pas affilié à Fizz; quand vous utilisez le code, le membre qui l’a partagé reçoit aussi une prime — c’est le principe du programme.
+finalCta:
+  title: Prêt? Vos {bonus} vous attendent.
+  text: Copiez **{code}**, créez votre forfait et collez le code avant de terminer votre commande.
+  button: Créer mon forfait Fizz
+footer:
+  disclaimer: "Page indépendante, non affiliée à Fizz et non approuvée ni commanditée par Fizz. Fizz est une marque de commerce de son propriétaire. Cette page partage un code de référence personnel : en l’utilisant, vous et le membre qui l’a partagé recevez une prime. Ceci n’est pas un conseil financier. Offre résumée à partir de la FAQ publique de Fizz — consultez toujours la [FAQ officielle du programme de référence]({termsUrl})."

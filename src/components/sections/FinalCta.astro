@@ -1,0 +1,38 @@
+---
+// Last call to action of a product page: code box + sign-up button on the brand color.
+import type { Product, ProductLocale } from '../../lib/model.ts';
+import Button from '../ui/Button.astro';
+import CodeBox from '../ui/CodeBox.astro';
+import Md from '../ui/Md.astro';
+interface Props {
+  product: Product;
+  L: ProductLocale;
+}
+const { product: p, L } = Astro.props;
+const f = L.c.finalCta;
+---
+<section class="section final-wrap" aria-labelledby="final-h">
+  <div class="wrap">
+    <div class="final">
+      <div>
+        <h2 id="final-h"><Md text={f.title} /></h2>
+        <p><Md text={f.text} /></p>
+      </div>
+      <div class="final__actions">
+        <CodeBox code={p.code} ui={L.ui} inverse />
+        <Button href={String(L.vars.link)} label={f.button} variant="accent" block />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .final-wrap{padding-top:0}
+  .section--alt+.final-wrap{padding-top:clamp(64px,9vw,112px)}
+  .final{display:grid;gap:32px;align-items:center;padding:clamp(32px,5vw,64px);border-radius:calc(var(--radius) + 12px);background:var(--brand);color:var(--brand-ink);position:relative;overflow:hidden;isolation:isolate}
+  .final::before{content:"";position:absolute;z-index:-1;right:-120px;bottom:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 60%,transparent),transparent)}
+  @media (min-width:900px){.final{grid-template-columns:1.1fr .9fr}}
+  .final h2{margin-bottom:.3em}
+  .final p{margin:0;opacity:.8;font-size:1.1rem}
+  .final__actions{display:grid;gap:14px}
+</style>

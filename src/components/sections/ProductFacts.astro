@@ -1,0 +1,27 @@
+---
+// "Quick answer": the key facts of the offer as a definition list (also read aloud: speakable #quick-answer).
+import type { ProductLocale } from '../../lib/model.ts';
+import Md from '../ui/Md.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Props {
+  L: ProductLocale;
+  alt: boolean;
+}
+const { L, alt } = Astro.props;
+const f = L.c.facts;
+---
+<section class:list={['section', { 'section--alt': alt }]} id="quick-answer" aria-labelledby="facts-h">
+  <div class="wrap split">
+    <SectionHead id="facts-h" kicker={f.kicker} title={f.title} intro={f.intro} />
+    <dl class="facts card">{f.items.map((it) => <div><dt><Md text={it.label} /></dt><dd><Md text={it.value} /></dd></div>)}</dl>
+  </div>
+</section>
+
+<style is:global>
+  .facts{margin:0;overflow:hidden}
+  .facts>div{display:grid;grid-template-columns:minmax(150px,36%) 1fr;gap:18px;padding:16px 24px;border-top:1px solid var(--line)}
+  .facts>div:first-child{border-top:0;background:var(--accent-soft)}
+  .facts dt{color:var(--muted);font-weight:550}
+  .facts dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+  @media (max-width:560px){.facts>div{grid-template-columns:1fr;gap:2px;padding:14px 18px}}
+</style>

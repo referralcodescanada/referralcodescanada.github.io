@@ -1,0 +1,44 @@
+# Home page — français. Placeholders: {name} {count} {year} {month}. Schema: src/lib/schema.ts
+seo:
+  title: Codes de parrainage canadiens {year} — primes vérifiées
+  description: "Codes de parrainage canadiens vérifiés : le code, où l’entrer, la prime exacte, les règles et les étapes. Mis à jour régulièrement."
+  keywords:
+    - code de parrainage
+    - code de référence
+    - prime d’inscription
+    - code promo Canada
+    - code parrainage Québec
+hero:
+  eyebrow: Mis à jour en {month}
+  h1: Des codes de parrainage canadiens ==qui fonctionnent==
+  lead: De vrais codes de parrainage d’un vrai utilisateur canadien. Chaque page vous donne le code, où l’entrer, la prime exacte, les règles et les étapes — rien de plus.
+og:
+  eyebrow: PRIMES VÉRIFIÉES
+  line1: Codes de parrainage
+  line2: canadiens
+  badgeBottom: de prime
+listTitle: Codes de parrainage
+listIntro: Choisissez un service pour voir le code, la prime et comment l’obtenir.
+about:
+  title: Comment fonctionne ce site
+  items:
+    - icon: shield
+      title: Codes personnels
+      text: Chaque code est émis par l’entreprise à un vrai client. En l’utilisant, vous obtenez la prime de nouveau client et le parrain en reçoit une aussi — c’est le principe du parrainage.
+    - icon: clock
+      title: Vérifiés selon les conditions officielles
+      text: Les montants, dépôts et délais sont résumés à partir des conditions publiques de chaque entreprise, avec la date de vérification sur chaque page.
+    - icon: globe
+      title: Français et anglais
+      text: Chaque guide est offert en français et en anglais, pour le Québec et le reste du Canada.
+faq:
+  title: Questions
+  items:
+    - q: Est-ce que ces codes de parrainage sont gratuits?
+      a: Oui. Utiliser un code de parrainage ne coûte rien — il débloque seulement la prime d’inscription offerte par l’entreprise.
+    - q: Ce site est-il affilié aux entreprises mentionnées?
+      a: Non. {name} est un site indépendant. Les codes sont des codes de parrainage personnels; les marques appartiennent à leurs propriétaires respectifs.
+    - q: À quelle fréquence les codes sont-ils vérifiés?
+      a: Chaque page affiche sa date de dernière vérification. Les codes et primes sont revérifiés régulièrement selon les conditions officielles.
+footer:
+  disclaimer: "Site indépendant, non affilié aux entreprises mentionnées et non approuvé par celles-ci. Les marques appartiennent à leurs propriétaires respectifs. Les pages partagent des codes de parrainage personnels : le nouveau client et le parrain peuvent tous deux recevoir une prime. Ceci n’est pas un conseil financier."
