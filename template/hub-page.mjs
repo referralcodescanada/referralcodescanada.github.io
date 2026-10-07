@@ -1,7 +1,7 @@
 // Renders the collection home page (one per locale) and the 404 page.
 import { esc, md, plain } from '../scripts/lib.mjs';
 import { icon } from './icons.mjs';
-import { footer, head, header, scripts, toast } from './layout.mjs';
+import { coin, footer, head, header, scripts, toast } from './layout.mjs';
 import { miniCard } from './site-page.mjs';
 
 export function renderHubPage(x) {
@@ -17,7 +17,7 @@ export function renderHubPage(x) {
       <h1 id="h1">${md(c.hero.h1)}</h1>
       <p class="lead">${md(c.hero.lead)}</p>
     </div>
-    <img class="hub-logo" src="${P.href(P.logoFull)}" width="240" height="240" alt="${esc(hub.name)}">
+    ${coin({ src: P.href(P.logoFull), alt: hub.name, legend: hub.cfg.coin })}
   </div>
 </section>
 <section class="section section--tight" id="codes" aria-labelledby="codes-h">

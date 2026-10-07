@@ -90,11 +90,49 @@ ${page.analytics?.goatcounter ? `<script data-goatcounter="https://${esc(page.an
 </head>`;
 }
 
+// Small logo in the header and footer: a coin that flips to its gold "$" side on hover (styles.css).
+const logoCoin = (src, lazy = false) =>
+  `<span class="logo__coin" aria-hidden="true"><img src="${src}" alt="" width="36" height="36"${lazy ? ' loading="lazy"' : ''}></span>`;
+
+const LEAF =
+  'M50 2l6 11.5c.7 1.2 2.2 1.5 3.3.8L64.5 11l-3.2 22.5c-.3 1.9 1.9 3.1 3.3 1.8l7.6-8.2 1.8 4.4c.4.9 1.4 1.4 2.4 1.2l9.6-2-3.3 10.2c-.3.9.1 1.9 1 2.3l3.6 1.7-16.4 13.3c-.6.5-.8 1.3-.6 2l2 5.6-15.2-2.7c-1.1-.2-2.1.7-2 1.8l.8 15.6h-3.4l.8-15.6c.1-1.1-.9-2-2-1.8l-15.2 2.7 2-5.6c.2-.7 0-1.5-.6-2L13.4 44l3.6-1.7c.9-.4 1.3-1.4 1-2.3l-3.3-10.2 9.6 2c1 .2 2-.3 2.4-1.2l1.8-4.4 7.6 8.2c1.4 1.3 3.6.1 3.3-1.8L35.5 11l5.2 3.3c1.1.7 2.6.4 3.3-.8z';
+
+/**
+ * The network logo as a 3D gold coin (home page): logo on the front, "$" + maple leaf and a
+ * bilingual legend on the back, a reeded edge made of stacked discs. Animated by app.js
+ * (drop-in, idle spin, pointer tilt, tap to toss); static when the visitor prefers reduced motion.
+ */
+export function coin({ src, alt, legend = {} }) {
+  const edge = Array.from({ length: 16 }, (_, i) => `<i style="--i:${i}"></i>`).join('');
+  const back = `<svg viewBox="0 0 200 200" width="240" height="240" xmlns="http://www.w3.org/2000/svg">
+<defs><radialGradient id="coin-f" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#1f4f93"/><stop offset=".6" stop-color="#0f2f63"/><stop offset="1" stop-color="#081a3c"/></radialGradient>
+<linearGradient id="coin-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c2"/><stop offset=".4" stop-color="#f0c75a"/><stop offset=".75" stop-color="#c8922b"/><stop offset="1" stop-color="#8f6114"/></linearGradient>
+<path id="coin-top" d="M28 100a72 72 0 0 1 144 0"/><path id="coin-bot" d="M19 100a81 81 0 0 0 162 0"/></defs>
+<circle cx="100" cy="100" r="100" fill="url(#coin-f)"/>
+<g fill="none" stroke="url(#coin-g)"><circle cx="100" cy="100" r="92" stroke-width="1.4"/><circle cx="100" cy="100" r="61" stroke-width="1.2"/></g>
+<g fill="url(#coin-g)" style="font-family:var(--font-display)" font-weight="700" font-size="12" letter-spacing="1.1" text-anchor="middle">
+<text><textPath href="#coin-top" startOffset="50%">${esc((legend.top || '').toUpperCase())}</textPath></text>
+<text><textPath href="#coin-bot" startOffset="50%">${esc((legend.bottom || '').toUpperCase())}</textPath></text>
+<circle cx="23" cy="100" r="2.6"/><circle cx="177" cy="100" r="2.6"/>
+<text x="100" y="141" font-size="64" font-weight="800" letter-spacing="0">$</text></g>
+<path transform="translate(83 49) scale(.34)" fill="#e0262f" d="${LEAF}"/>
+</svg>`;
+  return `<div class="coin" data-coin>
+  <span class="coin__shadow" aria-hidden="true"><i></i></span>
+  <div class="coin__float"><div class="coin__toss"><div class="coin__spin"><div class="coin__tilt">
+    <div class="coin__edge" aria-hidden="true">${edge}</div>
+    <div class="coin__face coin__face--back" aria-hidden="true">${back}</div>
+    <div class="coin__face coin__face--front"><img src="${src}" width="240" height="240" alt="${esc(alt)}" draggable="false"><span class="coin__sheen" aria-hidden="true"></span><span class="coin__band" aria-hidden="true"></span></div>
+    <span class="coin__glint" aria-hidden="true"></span>
+  </div></div></div></div>
+</div>`;
+}
+
 export function header({ ui, homeHref, homeLabel, logoHref, nav, langLinks }) {
   return `<a class="skip" href="#main">${esc(ui.skip)}</a>
 <header class="topbar">
   <div class="wrap topbar__in">
-    <a class="logo" href="${homeHref}"><img src="${logoHref}" alt="" width="36" height="36"><span>${esc(homeLabel)}</span></a>
+    <a class="logo" href="${homeHref}">${logoCoin(logoHref)}<span>${esc(homeLabel)}</span></a>
     <nav class="nav" aria-label="Main">
       ${nav.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join('')}
       ${langLinks.map((l) => `<a class="lang" href="${l.href}" hreflang="${l.lang}" lang="${l.lang}" title="${esc(l.label)}">${esc(l.short)}</a>`).join('')}
@@ -125,7 +163,7 @@ export function footer({ ui, disclaimer, columns, meta, logoHref, homeLabel, hom
   <div class="wrap">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a class="logo" href="${homeHref}"><img src="${logoHref}" alt="" width="36" height="36" loading="lazy"><span>${esc(homeLabel)}</span></a>
+        <a class="logo" href="${homeHref}">${logoCoin(logoHref, true)}<span>${esc(homeLabel)}</span></a>
         <p class="footer__disc">${md(disclaimer)}</p>
       </div>
       ${cols}

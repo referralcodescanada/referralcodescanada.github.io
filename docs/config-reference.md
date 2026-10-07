@@ -18,6 +18,7 @@ Les montants sont formatés selon la langue (`$25` en anglais, `25 $` en frança
 | `products` | **Par dépôt.** Dépôt racine : liste des produits à afficher sur l'accueil |
 | `customDomain` | Domaine personnalisé (vide = github.io). Change toutes les URLs |
 | `analytics.goatcounter` | Code GoatCounter (vide = désactivé) |
+| `coin.top` / `.bottom` | Légende gravée au dos de la pièce animée de l'accueil (arc du haut, arc du bas) |
 | `indexNowKey` | Clé IndexNow (fichier `/<clé>.txt` publié) |
 | `verification.google` / `.bing` | Valeur `content` d'une balise meta de vérification (optionnel ; on utilise plutôt les fichiers de `public/`) |
 | `theme` | Couleurs `light` et `dark` (bg, surface, ink, muted, line, brand, brandInk, accent, accentInk, accentSoft, highlight), `fonts`, `radius` |
@@ -68,6 +69,7 @@ Les montants sont formatés selon la langue (`$25` en anglais, `25 $` en frança
 
 - `sites/<slug>/assets/` : `icon.svg` (original, jamais le logo de la marque), `og-en.png`, `og-fr.png`, `apple-touch-icon.png` (générés par `npm run og`).
 - `hub/assets/` (partagé) : **`logo.png`** = logo source du réseau (carré 1024 px, fond transparent). Dans le dépôt d'accueil, `npm run og` en dérive `logo-512.png` (données structurées, accueil), `logo-mark-128.png` (en-tête et pied de page : feuille + étiquette, lisible en petit), `favicon-192.png`, `favicon.ico`, `apple-touch-icon.png` et les images de partage de l'accueil. Le recadrage de la version petite taille est réglé par `MARK` dans `scripts/og.mjs`. Ensuite, `npm run sync`.
+- **Pièce animée** : sur l'accueil, `logo-512.png` devient la face d'une pièce d'or 3D (`coin()` dans `template/layout.mjs`, styles `.coin` dans `styles.css`, animations dans `app.js`) : chute en tournoyant au chargement, rotation toutes les 9 s, inclinaison vers la souris ; chaque clic la fait bondir et la retourne sur l'autre face, où elle reste jusqu'au clic suivant. Le logo de l'en-tête et du pied de page se retourne sur son côté « $ » au survol, et copier un code fait jaillir des pièces. Tout est désactivé si le visiteur a demandé de réduire les animations.
 - `public/` : copié tel quel à la racine publiée (fichiers de vérification Google, Bing…).
 - `.cache/` : dernière copie valide des données des autres dépôts. À committer.
 

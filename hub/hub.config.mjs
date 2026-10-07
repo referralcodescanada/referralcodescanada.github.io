@@ -29,6 +29,8 @@ export default {
   // Counts page views + "copy-code/<slug>" and "signup-click/<slug>" events.
   analytics: { goatcounter: '' },
   github: 'https://github.com/referralcodescanada',
+  // Legend engraved on the back of the animated logo coin (home page hero): top arc, bottom arc.
+  coin: { top: 'Referral Codes Canada', bottom: 'Codes de parrainage' },
   defaultLocale: 'en',
 
   // Bing / Yandex / Seznam instant indexing (ChatGPT search relies on Bing's index).

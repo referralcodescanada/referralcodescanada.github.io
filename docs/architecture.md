@@ -47,7 +47,7 @@ D:\referalcodescanada\
 | `scripts/new-product.mjs` | Crée un nouveau dépôt produit (`npm run new-product -- <slug>`) |
 | `scripts/indexnow.mjs` | Avertit Bing/IndexNow après un déploiement |
 | `template/*.mjs` | Gabarits HTML (page produit, guide, accueil, 404), Markdown, image OG |
-| `template/styles.css`, `app.js`, `icons.mjs`, `i18n.mjs` | Design, copier le code, barre mobile, statistiques, textes d'interface EN/FR |
+| `template/styles.css`, `app.js`, `icons.mjs`, `i18n.mjs` | Design, copier le code, barre mobile, pièces animées, statistiques, textes d'interface EN/FR |
 
 Aucune dépendance au moment du build : GitHub Actions lance seulement `node scripts/build.mjs`. `@resvg/resvg-js` (devDependency) sert uniquement à `npm run og`, en local.
 
