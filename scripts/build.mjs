@@ -71,6 +71,16 @@ for (const site of sites) {
   sitemapEntries.push({ lastmod: site.lastVerified, pages: site.locs.map((l) => site.locales[l]), def: site.locales[site.def] });
   for (const g of site.guides) sitemapEntries.push({ lastmod: g.lastVerified, pages: Object.values(g.locales), def: g.locales[g.def] });
 
+  // Removed pages → redirect (meta refresh 0 + canonical, treated by Google as a permanent redirect).
+  for (const r of site.cfg.redirects || []) {
+    const target = P.abs(`${site.basePath}${r.to || ''}`);
+    out(
+      `${site.basePath}${r.from.replace(/^\/+/, '').replace(/\/?$/, '/')}index.html`,
+      `<!doctype html><html><head><meta charset="utf-8"><title>Redirecting…</title><meta name="robots" content="noindex"><link rel="canonical" href="${target}"><meta http-equiv="refresh" content="0; url=${target}"></head><body><a href="${target}">${target}</a></body></html>
+`,
+    );
+  }
+
   out(`${site.basePath}llms.txt`, siteLlmsTxt({ site, hub }));
   out(`${site.basePath}referral.json`, JSON.stringify(productSummary(site, P), null, 2));
   out(

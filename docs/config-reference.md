@@ -32,6 +32,7 @@ Les montants sont formatés selon la langue (`$25` en anglais, `25 $` en frança
 | `defaultLocale` | Langue servie à `/<slug>/` (les autres sont sous `/<slug>/<langue>/`) |
 | `lastVerified` | Date de la dernière vérification de l'offre (affichée, `dateModified`, sitemap) |
 | `firstPublished` | `datePublished` |
+| `redirects` | Pages supprimées : `[{ from: 'guides/ancien/', to: '' }]` (chemins relatifs au site) → redirection vers `to` |
 | `brand.name`, `brand.sameAs` | Nom de la marque et URLs officielles (données structurées) |
 | `referral` | `code`, `url` (lien d'invitation, ou page d'inscription), `urls.{en,fr}` (facultatif : page d'inscription par langue, pour les produits sans lien de parrainage), `bonus`, `minDeposit` (dépôt ou forfait minimum), `currency`, `codeSpelled.{en,fr}` |
 | `theme` | Remplace n'importe quel jeton du thème du hub |

@@ -7,8 +7,15 @@ description: Write a new bilingual (EN/FR) guide page for a product of the Refer
 
 Guides are extra pages (`/<slug>/guides/<en-slug>/`, `/<slug>/fr/guides/<fr-slug>/`) that target related searches and link back to the referral code. They're listed automatically on the product page, footer, sitemap, `llms.txt` and the home page.
 
-## 1. Choose the topic
-If the user didn't give one, propose 3 options with the search query each would target. Good topics answer a concrete question around the product: troubleshooting the bonus, how to use a feature, transfers, fees, account types, comparisons only if facts are verifiable. Avoid near-duplicates of existing guides (`ls sites/<slug>/guides/`) and thin rewrites of the main page — Google demotes low-value pages.
+## 1. Choose the topic — scope rule
+These sites exist to get **new clients to use the user's referral code**. A guide is in scope only if it helps someone **use the code or get the bonus**:
+- ✅ how/where to enter the code, the code isn't accepted, the bonus is late or missing, when the bonus is paid, eligibility edge cases (province, existing account, second plan), what counts toward the condition.
+- ❌ content for **existing clients** — especially "find / share your own referral code": they can't use the user's code, and it teaches them to compete with it.
+- ❌ **financial, tax, legal or investment advice** (TFSA/RRSP transfers, contribution room, taxes, fees comparisons, "which account should I open"): Google holds this "Your Money or Your Life" content to high standards of expertise, and errors create liability. Answer such a question in one FAQ line on the main page that links to the company's official help page instead.
+- ❌ general product reviews or comparisons with competitors.
+If the user asks for an out-of-scope guide, explain why (in French) and propose an in-scope alternative or a FAQ entry.
+
+If the user didn't give a topic, propose up to 3 in-scope options with the search query each would target. Avoid near-duplicates of existing guides (`ls sites/<slug>/guides/`) and thin rewrites of the main page — Google demotes low-value pages. Two or three good guides per product are enough.
 
 ## 2. Research
 Use the company's official help centre / terms / product pages. Keep the URL of every fact. Numbers, deadlines and menu paths must be confirmed; if a French app label can't be confirmed, describe the element ("the gift icon") instead of guessing its label.

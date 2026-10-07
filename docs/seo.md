@@ -24,5 +24,5 @@
 
 1. **Mentions et liens depuis d'autres sites** : annuaires de codes de parrainage, fils Reddit / RedFlagDeals qui autorisent les codes, vos profils. Toujours dans les règles des communautés, jamais de spam ni de faux avis.
 2. **Fraîcheur et exactitude** : `lastVerified` récent, faits vérifiés.
-3. **Contenu utile** : des guides qui répondent à de vraies questions (pas de pages quasi identiques).
+3. **Contenu utile et ciblé** : des guides qui répondent à de vraies questions **sur l'utilisation du code et la prime** (pas de pages quasi identiques, pas de contenu pour les clients existants, pas de conseils financiers ou fiscaux).
 4. **Ancienneté** : le classement progresse avec le temps. Comptez quelques semaines pour les requêtes précises, quelques mois pour « <marque> referral code ».

@@ -47,4 +47,4 @@ Tell the user, in French, to:
    `git init -b main`, `git config user.name "referralcodescanada"`, `git config user.email "dotis+referralcodescanada@proton.me"`, `git config http.sslBackend schannel`, `git add .`, `git commit -m "Initial site"`, `git remote add origin https://referralcodescanada@github.com/referralcodescanada/<slug>.git`, `git push -u origin main`.
 3. Commit + push the home-page repo (`../referralcodescanada.github.io`) whose `products` list changed.
 4. After both deploys: run `npm run check` in the new repo; submit `https://referralcodescanada.github.io/<slug>/sitemap.xml` in Search Console (the root URL-prefix property already covers it).
-Then offer to write 2–3 guides with the `add-guide` skill.
+Then offer to write 1–3 guides with the `add-guide` skill — only about using the code and getting the bonus (see its scope rule).
