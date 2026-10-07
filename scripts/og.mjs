@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { loadProject, ROOT } from './load.mjs';
 import { ogSvg } from '../template/og.mjs';
+import { money } from './lib.mjs';
 
 let Resvg;
 try {
@@ -41,7 +42,7 @@ function pngToIco(png, size) {
   return Buffer.concat([header, png]);
 }
 
-const { hub, sites, P } = await loadProject();
+const { hub, sites, products, P } = await loadProject();
 const save = (file, buf) => {
   fs.writeFileSync(file, buf);
   console.log(`  ✔ ${path.relative(ROOT, file)}`);
@@ -69,12 +70,15 @@ for (const site of sites) {
   if (fs.existsSync(icon)) save(path.join(dir, 'apple-touch-icon.png'), render(fs.readFileSync(icon, 'utf8'), 180));
 }
 
+// Home-page images and icons are shared (hub/assets/): only the home-page repo generates them.
+if (P.standalone) process.exit(0);
+
+// The home-page image features the first product of the network (local site or published repo).
+const first = products[0];
 const hubDir = path.join(ROOT, 'hub', 'assets');
-const first = sites[0];
 for (const loc of hub.locs) {
   const H = hub.locales[loc];
   const og = H.c.og || {};
-  const F = first && (first.locales[loc] || first.locales[first.def]);
   const svg = ogSvg({
     theme: hub.theme,
     eyebrow: og.eyebrow || '',
@@ -82,7 +86,7 @@ for (const loc of hub.locs) {
     line2: og.line2 || '',
     code: first ? first.code : '—',
     codeLabel: first ? `${first.name} · ${H.ui.codeLabel}` : H.ui.codeLabel,
-    badgeTop: og.badgeTop || (F ? F.vars.bonus : ''),
+    badgeTop: og.badgeTop || (first ? money(first.bonus.amount, first.bonus.currency, H.lang) : ''),
     badgeBottom: og.badgeBottom || H.ui.bonus,
     footer: P.siteUrl.replace(/^https?:\/\//, ''),
   });

@@ -92,7 +92,8 @@ async function prepareSite(slug, cfg, hubCfg, P, year) {
   for (const k of ['code', 'url', 'bonus', 'currency']) if (r[k] == null) fail(`${slug}: missing referral.${k}`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(cfg.lastVerified || '')) fail(`${slug}: lastVerified must be YYYY-MM-DD`);
 
-  markSponsored(r.url);
+  // referral.url = invite link; optional referral.urls.{en,fr} = per-language sign-up page (products without invite links).
+  for (const u of [r.url, ...Object.values(r.urls || {})]) markSponsored(u);
   const locs = Object.keys(cfg.locales || {});
   if (!locs.length) fail(`${slug}: at least one locale is required`);
   const def = cfg.defaultLocale || locs[0];
@@ -125,8 +126,8 @@ async function prepareSite(slug, cfg, hubCfg, P, year) {
       brand: cfg.brand.name,
       code: r.code,
       codeSpelled: r.codeSpelled?.[loc] ?? r.code.split('').join(' · '),
-      link: r.url,
-      linkDisplay: r.url.replace(/^https?:\/\/(www\.)?/, ''),
+      link: r.urls?.[loc] || r.url,
+      linkDisplay: (r.urls?.[loc] || r.url).replace(/^https?:\/\/(www\.)?/, ''),
       bonus: money(r.bonus, r.currency, lang),
       bonusCents: money(r.bonus, r.currency, lang, 2),
       minDeposit: money(r.minDeposit ?? 0, r.currency, lang),
@@ -144,7 +145,8 @@ async function prepareSite(slug, cfg, hubCfg, P, year) {
       loc,
       lang,
       meta,
-      ui: interpolateDeep(UI[loc], vars),
+      // `locales.<lang>.ui` overrides interface strings for one product (e.g. Fizz says « code de référence »).
+      ui: interpolateDeep(deepMerge(UI[loc], raw.ui || {}), vars),
       vars,
       c: interpolateDeep(raw, vars),
       path: p,

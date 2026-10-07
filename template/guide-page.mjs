@@ -49,7 +49,7 @@ export function renderGuidePage(x) {
         <h2>${md(ui.calloutTitle)}</h2>
         <p>${md(ui.calloutText)}</p>
         <div class="codebox codebox--inverse"><div class="codebox__txt"><span class="codebox__label">${esc(ui.codeLabel)}</span><code class="codebox__code">${esc(code)}</code></div>${copyButton({ code, ui, cls: 'copy--sm' })}</div>
-        ${ctaLink({ href: site.link, label: S.c.hero.cta, cls: 'btn btn--accent' })}
+        ${ctaLink({ href: G.vars.link, label: S.c.hero.cta, cls: 'btn btn--accent' })}
       </div>
     </aside>
   </div>
@@ -144,7 +144,7 @@ ${nav}
 ${body}
 </main>
 ${siteFooter(x, S, assets.markdown)}
-${stickyBar(site, ui)}
+${stickyBar(site, ui, G.vars.link)}
 ${toast()}
 ${scripts()}
 </body>

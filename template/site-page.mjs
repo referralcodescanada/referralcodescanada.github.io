@@ -10,7 +10,7 @@ export function renderSitePage(x) {
   const { site, L, hub, H, siblings, P, assets, year } = x;
   const { c, ui } = L;
   const code = site.code;
-  const link = site.link;
+  const link = L.vars.link;
 
   const hero = `
 <section class="hero" aria-labelledby="h1">
@@ -157,7 +157,7 @@ export function renderSitePage(x) {
     langLinks: otherLocales.map((o) => ({ href: o.href, lang: o.lang, label: o.meta.label, short: o.meta.short })),
   });
 
-  const sticky = stickyBar(site, ui);
+  const sticky = stickyBar(site, ui, link);
   const pageFooter = siteFooter(x, L, assets.markdown);
 
   const page = {
@@ -208,12 +208,12 @@ ${scripts()}
 `;
 }
 
-export function stickyBar(site, ui) {
+export function stickyBar(site, ui, link = site.link) {
   return `
 <div class="stickybar" role="region" aria-label="${esc(ui.quickActions)}">
   <div class="stickybar__code"><small>${esc(ui.codeLabel)}</small><code>${esc(site.code)}</code></div>
   ${copyButton({ code: site.code, ui, cls: 'copy--sm' })}
-  ${ctaLink({ href: site.link, label: ui.signUp, cls: 'btn btn--primary btn--sm' })}
+  ${ctaLink({ href: link, label: ui.signUp, cls: 'btn btn--primary btn--sm' })}
 </div>`;
 }
 

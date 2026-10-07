@@ -33,11 +33,12 @@ Les montants sont formatés selon la langue (`$25` en anglais, `25 $` en frança
 | `lastVerified` | Date de la dernière vérification de l'offre (affichée, `dateModified`, sitemap) |
 | `firstPublished` | `datePublished` |
 | `brand.name`, `brand.sameAs` | Nom de la marque et URLs officielles (données structurées) |
-| `referral` | `code`, `url` (lien d'invitation), `bonus`, `minDeposit`, `currency`, `codeSpelled.{en,fr}` |
+| `referral` | `code`, `url` (lien d'invitation, ou page d'inscription), `urls.{en,fr}` (facultatif : page d'inscription par langue, pour les produits sans lien de parrainage), `bonus`, `minDeposit` (dépôt ou forfait minimum), `currency`, `codeSpelled.{en,fr}` |
 | `theme` | Remplace n'importe quel jeton du thème du hub |
 | `vars` | Variables supplémentaires pour les textes |
 | `locales.<langue>.links` | URLs officielles (`officialUrl`, `termsUrl`, `promotionsUrl`…) |
 | `locales.<langue>.seo` | `title`, `description`, `keywords`, `imageAlt` |
+| `locales.<langue>.ui` | Remplace des textes d'interface pour ce produit (clés de `template/i18n.mjs`, ex. `codeLabel`) |
 | `locales.<langue>.og` | Texte de l'image de partage : `eyebrow`, `line1`, `line2`, `badgeBottom` |
 | `locales.<langue>.hub.summary` | Phrase affichée sur les cartes de l'accueil |
 | `hero` | `eyebrow`, `h1`, `lead`, `cta`, `ctaSecondary`, `note`, `chips[]` |

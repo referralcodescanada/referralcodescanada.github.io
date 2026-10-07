@@ -18,7 +18,7 @@ export default {
 
   // Hub mode only: products published from their own repos (https://<account>.github.io/<slug>/).
   // Their data is read from /<slug>/referral.json at build time.
-  products: ['wealthsimple'],
+  products: ['wealthsimple', 'fizz'],
 
   // Optional custom domain (e.g. 'codesparrainage.ca'), set on the "<account>.github.io" repo.
   // Changes every URL — decide early. Same value in every repo.
@@ -114,9 +114,9 @@ export default {
     },
     fr: {
       seo: {
-        title: 'Codes de parrainage canadiens {year} — Primes d’inscription vérifiées',
+        title: 'Codes de parrainage canadiens {year} — primes vérifiées',
         description:
-          'Codes de parrainage et liens d’invitation canadiens qui fonctionnent, avec primes d’inscription vérifiées. Guides étape par étape, règles et FAQ, mis à jour régulièrement.',
+          'Codes de parrainage canadiens vérifiés : le code, le lien d’invitation, la prime exacte, les règles et les étapes. Mis à jour régulièrement.',
         keywords: ['code de parrainage', 'code de référence', 'prime d’inscription', 'code promo Canada', 'code parrainage Québec'],
       },
       hero: {
