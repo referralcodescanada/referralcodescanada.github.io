@@ -7,7 +7,7 @@ const MONO = "'Consolas', 'JetBrains Mono', 'DejaVu Sans Mono', monospace";
 // Rough fit: shrink the font size for long lines so they stay inside the left column.
 const fit = (text, max, width) => Math.min(max, Math.floor(width / (String(text).length * 0.55)));
 
-export function ogSvg({ theme, eyebrow, line1, line2, code, codeLabel, badgeTop, badgeBottom, footer }) {
+export function ogSvg({ theme, eyebrow, line1, line2, code, codeLabel, badgeTop, badgeBottom, footer, logo }) {
   const t = theme.light;
   const s1 = fit(line1, 78, 640);
   const s2 = fit(line2, 78, 640);
@@ -36,12 +36,12 @@ export function ogSvg({ theme, eyebrow, line1, line2, code, codeLabel, badgeTop,
     <text x="38" y="${48 + codeSize * 0.95}" font-family="${MONO}" font-size="${codeSize}" font-weight="700" letter-spacing="10" fill="${t.ink}">${esc(code)}</text>
   </g>
 
-  <g transform="translate(940 300) rotate(-8)">
+  ${logo ? `<image href="${logo}" x="745" y="110" width="390" height="390"/>` : `<g transform="translate(940 300) rotate(-8)">
     <circle r="190" fill="${t.accent}"/>
     <circle r="168" fill="none" stroke="${t.accentInk}" stroke-opacity="0.35" stroke-width="3" stroke-dasharray="6 10"/>
     <text y="22" text-anchor="middle" font-family="${SANS}" font-size="${fit(badgeTop, 132, 300)}" font-weight="800" fill="${t.accentInk}">${esc(badgeTop)}</text>
     <text y="80" text-anchor="middle" font-family="${SANS}" font-size="34" font-weight="700" fill="${t.accentInk}" letter-spacing="1">${esc(badgeBottom)}</text>
-  </g>
+  </g>`}
 
   <text x="80" y="592" font-family="${SANS}" font-size="24" font-weight="600" fill="${t.muted}">${esc(footer)}</text>
 </svg>`;

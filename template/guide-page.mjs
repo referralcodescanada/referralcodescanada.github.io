@@ -69,7 +69,7 @@ export function renderGuidePage(x) {
   const jsonld = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'Organization', '@id': org['@id'], name: hub.name, url: `${P.rootUrl}/`, logo: P.abs(`${P.hubAssets}apple-touch-icon.png`) },
+      { '@type': 'Organization', '@id': org['@id'], name: hub.name, url: `${P.rootUrl}/`, logo: P.abs(P.logoFull) },
       {
         '@type': 'Article',
         '@id': `${url}#article`,
@@ -130,7 +130,7 @@ export function renderGuidePage(x) {
     ui,
     homeHref: H.href,
     homeLabel: hub.name,
-    logoHref: P.href(`${P.hubAssets}icon.svg`),
+    logoHref: P.href(P.logoMark),
     nav: [{ href: S.href, label: `${site.name} — ${code}` }],
     langLinks: otherLocales.map((o) => ({ href: o.href, lang: o.lang, label: o.meta.label, short: o.meta.short })),
   });

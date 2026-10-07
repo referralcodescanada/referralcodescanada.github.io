@@ -86,7 +86,7 @@ export default {
       hero: {
         eyebrow: 'Updated {month}',
         h1: 'Canadian referral codes that ==actually work==',
-        lead: 'Real referral codes from a real Canadian user. Each page gives you the code, the official invite link, the exact bonus, the rules and the steps — nothing else.',
+        lead: 'Real referral codes from a real Canadian user. Each page gives you the code, where to enter it, the exact bonus, the rules and the steps — nothing else.',
       },
       og: { eyebrow: 'VERIFIED SIGN-UP BONUSES', line1: 'Canadian', line2: 'referral codes', badgeBottom: 'bonus' },
       listTitle: 'Referral codes',
@@ -116,13 +116,13 @@ export default {
       seo: {
         title: 'Codes de parrainage canadiens {year} — primes vérifiées',
         description:
-          'Codes de parrainage canadiens vérifiés : le code, le lien d’invitation, la prime exacte, les règles et les étapes. Mis à jour régulièrement.',
+          'Codes de parrainage canadiens vérifiés : le code, où l’entrer, la prime exacte, les règles et les étapes. Mis à jour régulièrement.',
         keywords: ['code de parrainage', 'code de référence', 'prime d’inscription', 'code promo Canada', 'code parrainage Québec'],
       },
       hero: {
         eyebrow: 'Mis à jour en {month}',
         h1: 'Des codes de parrainage canadiens ==qui fonctionnent==',
-        lead: 'De vrais codes de parrainage d’un vrai utilisateur canadien. Chaque page vous donne le code, le lien d’invitation officiel, la prime exacte, les règles et les étapes — rien de plus.',
+        lead: 'De vrais codes de parrainage d’un vrai utilisateur canadien. Chaque page vous donne le code, où l’entrer, la prime exacte, les règles et les étapes — rien de plus.',
       },
       og: { eyebrow: 'PRIMES VÉRIFIÉES', line1: 'Codes de parrainage', line2: 'canadiens', badgeBottom: 'de prime' },
       listTitle: 'Codes de parrainage',

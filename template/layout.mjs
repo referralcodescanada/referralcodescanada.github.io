@@ -77,7 +77,7 @@ ${img ? `<meta property="og:image" content="${img.url}">
 <meta name="twitter:description" content="${esc(page.description)}">
 ${v.google ? `<meta name="google-site-verification" content="${esc(v.google)}">` : ''}
 ${v.bing ? `<meta name="msvalidate.01" content="${esc(v.bing)}">` : ''}
-<link rel="icon" href="${page.icon}" type="image/svg+xml">
+<link rel="icon" href="${page.icon}" type="${page.icon.endsWith('.svg') ? 'image/svg+xml' : 'image/png'}">
 ${page.appleIcon ? `<link rel="apple-touch-icon" href="${page.appleIcon}">` : ''}
 ${page.markdownUrl ? `<link rel="alternate" type="text/markdown" href="${page.markdownUrl}" title="Markdown version">` : ''}
 <link rel="sitemap" type="application/xml" href="${page.sitemapUrl}">
@@ -94,7 +94,7 @@ export function header({ ui, homeHref, homeLabel, logoHref, nav, langLinks }) {
   return `<a class="skip" href="#main">${esc(ui.skip)}</a>
 <header class="topbar">
   <div class="wrap topbar__in">
-    <a class="logo" href="${homeHref}"><img src="${logoHref}" alt="" width="30" height="30"><span>${esc(homeLabel)}</span></a>
+    <a class="logo" href="${homeHref}"><img src="${logoHref}" alt="" width="36" height="36"><span>${esc(homeLabel)}</span></a>
     <nav class="nav" aria-label="Main">
       ${nav.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join('')}
       ${langLinks.map((l) => `<a class="lang" href="${l.href}" hreflang="${l.lang}" lang="${l.lang}" title="${esc(l.label)}">${esc(l.short)}</a>`).join('')}
@@ -125,7 +125,7 @@ export function footer({ ui, disclaimer, columns, meta, logoHref, homeLabel, hom
   <div class="wrap">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a class="logo" href="${homeHref}"><img src="${logoHref}" alt="" width="30" height="30" loading="lazy"><span>${esc(homeLabel)}</span></a>
+        <a class="logo" href="${homeHref}"><img src="${logoHref}" alt="" width="36" height="36" loading="lazy"><span>${esc(homeLabel)}</span></a>
         <p class="footer__disc">${md(disclaimer)}</p>
       </div>
       ${cols}

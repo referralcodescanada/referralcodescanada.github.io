@@ -148,7 +148,7 @@ export function renderSitePage(x) {
     ui,
     homeHref: H.href,
     homeLabel: hub.name,
-    logoHref: P.href(`${P.hubAssets}icon.svg`),
+    logoHref: P.href(P.logoMark),
     nav: [
       { href: '#how', label: ui.nav.how },
       { href: '#rules', label: ui.nav.rules },
@@ -223,7 +223,7 @@ export function siteFooter({ site, hub, H, siblings, P, year }, L, markdownHref)
     ui,
     homeHref: H.href,
     homeLabel: hub.name,
-    logoHref: P.href(`${P.hubAssets}icon.svg`),
+    logoHref: P.href(P.logoMark),
     disclaimer: c.footer.disclaimer,
     columns: [
       {
@@ -300,7 +300,7 @@ function siteJsonLd({ site, L, hub, H, P, assets }) {
         '@id': org['@id'],
         name: hub.name,
         url: `${P.siteUrl}/`,
-        logo: P.abs(`${P.hubAssets}apple-touch-icon.png`),
+        logo: P.abs(P.logoFull),
         sameAs: hub.cfg.github ? [hub.cfg.github] : undefined,
       },
       {

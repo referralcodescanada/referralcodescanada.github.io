@@ -38,6 +38,11 @@ export async function loadProject({ year = new Date().getUTCFullYear() } = {}) {
     href: (p) => basePath + p,
     abs: (p) => siteUrl + p,
   };
+  // Network logo files (generated from hub/assets/logo.png by "npm run og" in the home-page repo), with fallbacks.
+  const hasHubAsset = (f) => fs.existsSync(path.join(ROOT, 'hub', 'assets', f));
+  P.logoMark = P.hubAssets + (hasHubAsset('logo-mark-128.png') ? 'logo-mark-128.png' : 'icon.svg');
+  P.logoFull = P.hubAssets + (hasHubAsset('logo-512.png') ? 'logo-512.png' : 'apple-touch-icon.png');
+  P.hubFavicon = P.hubAssets + (hasHubAsset('favicon-192.png') ? 'favicon-192.png' : 'icon.svg');
 
   const sitesDir = path.join(ROOT, 'sites');
   const slugs = (fs.existsSync(sitesDir) ? fs.readdirSync(sitesDir, { withFileTypes: true }) : [])

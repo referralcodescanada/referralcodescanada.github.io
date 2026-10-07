@@ -11,10 +11,13 @@ export function renderHubPage(x) {
 
   const body = `
 <section class="hero hero--hub" aria-labelledby="h1">
-  <div class="wrap">
-    <p class="eyebrow"><span class="dot" aria-hidden="true"></span>${md(c.hero.eyebrow)}</p>
-    <h1 id="h1">${md(c.hero.h1)}</h1>
-    <p class="lead">${md(c.hero.lead)}</p>
+  <div class="wrap hub-hero">
+    <div>
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>${md(c.hero.eyebrow)}</p>
+      <h1 id="h1">${md(c.hero.h1)}</h1>
+      <p class="lead">${md(c.hero.lead)}</p>
+    </div>
+    <img class="hub-logo" src="${P.href(P.logoFull)}" width="240" height="240" alt="${esc(hub.name)}">
   </div>
 </section>
 <section class="section section--tight" id="codes" aria-labelledby="codes-h">
@@ -67,7 +70,7 @@ export function renderHubPage(x) {
           '@id': `${P.siteUrl}/#organization`,
           name: hub.name,
           url: `${P.siteUrl}/`,
-          logo: P.abs(`${P.hubAssets}apple-touch-icon.png`),
+          logo: P.abs(P.logoFull),
           sameAs: hub.cfg.github ? [hub.cfg.github] : undefined,
         },
         {
@@ -150,7 +153,7 @@ ${header({
   ui,
   homeHref: H.href,
   homeLabel: hub.name,
-  logoHref: P.href(`${P.hubAssets}icon.svg`),
+  logoHref: P.href(P.logoMark),
   nav,
   langLinks: otherLocales.map((o) => ({ href: o.href, lang: o.lang, label: o.meta.label, short: o.meta.short })),
 })}
@@ -161,7 +164,7 @@ ${footer({
   ui,
   homeHref: H.href,
   homeLabel: hub.name,
-  logoHref: P.href(`${P.hubAssets}icon.svg`),
+  logoHref: P.href(P.logoMark),
   disclaimer: H.c.footer.disclaimer,
   columns: [
     { title: ui.allCodes, links: cards.map((s) => ({ href: s.href, label: `${s.name} — ${s.code}` })) },

@@ -90,7 +90,7 @@ if (!P.standalone) {
     const H = hub.locales[loc];
     const assets = {
       og: ogFor(hubAssetsDir, P.hubAssets, loc, hub.def),
-      icon: P.href(`${P.hubAssets}icon.svg`),
+      icon: P.href(P.hubFavicon),
       appleIcon: P.href(`${P.hubAssets}apple-touch-icon.png`),
     };
     const cards = products.map((s) => cardFromSummary(s, loc));
@@ -104,7 +104,7 @@ if (!P.standalone) {
   const site = sites[0];
   const L = site.locales[site.def];
   const H = { ...hub.locales[hub.def], href: L.href, url: L.url };
-  const assets = { og: null, icon: P.href(`${P.hubAssets}icon.svg`), appleIcon: P.href(`${P.hubAssets}apple-touch-icon.png`) };
+  const assets = { og: null, icon: P.href(P.hubFavicon), appleIcon: P.href(`${P.hubAssets}apple-touch-icon.png`) };
   out('404.html', render404({ hub, H, cards: [cardFromSummary(productSummary(site, P), site.def)], P, assets, year }));
 }
 

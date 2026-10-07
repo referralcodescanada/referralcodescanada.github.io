@@ -66,7 +66,7 @@ Les montants sont formatés selon la langue (`$25` en anglais, `25 $` en frança
 ## Fichiers et dossiers par dépôt
 
 - `sites/<slug>/assets/` : `icon.svg` (original, jamais le logo de la marque), `og-en.png`, `og-fr.png`, `apple-touch-icon.png` (générés par `npm run og`).
-- `hub/assets/` (partagé) : logo du réseau, favicon, images OG de l'accueil.
+- `hub/assets/` (partagé) : **`logo.png`** = logo source du réseau (carré 1024 px, fond transparent). Dans le dépôt d'accueil, `npm run og` en dérive `logo-512.png` (données structurées, accueil), `logo-mark-128.png` (en-tête et pied de page : feuille + étiquette, lisible en petit), `favicon-192.png`, `favicon.ico`, `apple-touch-icon.png` et les images de partage de l'accueil. Le recadrage de la version petite taille est réglé par `MARK` dans `scripts/og.mjs`. Ensuite, `npm run sync`.
 - `public/` : copié tel quel à la racine publiée (fichiers de vérification Google, Bing…).
 - `.cache/` : dernière copie valide des données des autres dépôts. À committer.
 
