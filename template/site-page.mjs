@@ -36,7 +36,7 @@ export function renderSitePage(x) {
 </section>`;
 
   const facts = `
-<section class="section section--alt" id="quick-answer" aria-labelledby="facts-h">
+<section class="section__ALT__" id="quick-answer" aria-labelledby="facts-h">
   <div class="wrap split">
     ${head2('facts-h', c.facts)}
     <dl class="facts card">${c.facts.items.map((f) => `<div><dt>${md(f.label)}</dt><dd>${md(f.value)}</dd></div>`).join('')}</dl>
@@ -44,7 +44,7 @@ export function renderSitePage(x) {
 </section>`;
 
   const steps = `
-<section class="section" id="how" aria-labelledby="how-h">
+<section class="section__ALT__" id="how" aria-labelledby="how-h">
   <div class="wrap">
     ${head2('how-h', c.steps)}
     <ol class="steps">${c.steps.items
@@ -56,7 +56,7 @@ export function renderSitePage(x) {
 
   const existing = c.existing
     ? `
-<section class="section section--alt" id="existing" aria-labelledby="existing-h">
+<section class="section__ALT__" id="existing" aria-labelledby="existing-h">
   <div class="wrap">
     ${head2('existing-h', c.existing)}
     <div class="grid-2">${c.existing.cards
@@ -72,7 +72,7 @@ export function renderSitePage(x) {
     : '';
 
   const rules = `
-<section class="section" id="rules" aria-labelledby="rules-h">
+<section class="section__ALT__" id="rules" aria-labelledby="rules-h">
   <div class="wrap split">
     ${head2('rules-h', c.rules)}
     <div>
@@ -84,7 +84,7 @@ export function renderSitePage(x) {
 
   const features = c.features
     ? `
-<section class="section section--alt" id="why" aria-labelledby="why-h">
+<section class="section__ALT__" id="why" aria-labelledby="why-h">
   <div class="wrap">
     ${head2('why-h', c.features)}
     <ul class="features">${c.features.items
@@ -96,7 +96,7 @@ export function renderSitePage(x) {
 
   const guides = site.guides.length
     ? `
-<section class="section section--alt" id="guides" aria-labelledby="guides-h">
+<section class="section__ALT__" id="guides" aria-labelledby="guides-h">
   <div class="wrap">
     ${head2('guides-h', { kicker: ui.guidesKicker, title: ui.guidesTitle, intro: ui.guidesIntro })}
     <ul class="guides">${site.guides.map((g) => guideCard(g.locales[L.loc] || g.locales[g.def], g, ui)).join('')}</ul>
@@ -105,7 +105,7 @@ export function renderSitePage(x) {
     : '';
 
   const faq = `
-<section class="section" id="faq" aria-labelledby="faq-h">
+<section class="section__ALT__" id="faq" aria-labelledby="faq-h">
   <div class="wrap narrow">
     ${head2('faq-h', c.faq)}
     <div class="faq">${c.faq.items
@@ -119,7 +119,7 @@ export function renderSitePage(x) {
 
   const others = siblings.length
     ? `
-<section class="section${site.guides.length ? '' : ' section--alt'}" id="more-codes" aria-labelledby="more-h">
+<section class="section__ALT__" id="more-codes" aria-labelledby="more-h">
   <div class="wrap">
     <div class="section__head"><h2 id="more-h">${esc(ui.moreCodes)}</h2><p class="section__intro">${esc(ui.moreCodesIntro)}</p></div>
     <ul class="cards">${siblings.map((s) => miniCard(s, ui)).join('')}</ul>
@@ -189,14 +189,7 @@ ${head(page)}
 ${pageHeader}
 <main id="main">
 ${hero}
-${facts}
-${steps}
-${existing}
-${rules}
-${features}
-${faq}
-${guides}
-${others}
+${alternate([facts, steps, existing, rules, features, faq, guides, others])}
 ${final}
 </main>
 ${pageFooter}
@@ -257,6 +250,15 @@ export function siteFooter({ site, hub, H, siblings, P, year }, L, markdownHref)
     ].filter(Boolean),
     meta: `© ${year} ${esc(hub.name)} · ${esc(ui.lastVerified)}${ui.colon}<time datetime="${site.lastVerified}">${esc(L.vars.verifiedDate)}</time>`,
   });
+}
+
+// Sections after the hero alternate between the page background and the "surface" background,
+// whatever sections a product leaves out.
+function alternate(sections) {
+  return sections
+    .filter(Boolean)
+    .map((html, i) => html.replace('__ALT__', i % 2 === 0 ? ' section--alt' : ''))
+    .join('\n');
 }
 
 function mockup(m) {

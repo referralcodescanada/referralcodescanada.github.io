@@ -48,7 +48,7 @@ Les montants sont formatés selon la langue (`$25` en anglais, `25 $` en frança
 | `steps` | Comment obtenir la prime : `items[{title,text}]`, `totalTime` (ISO 8601) |
 | `existing` | Ajouter le code après l'inscription : `cards[{icon,title,steps[]}]`, `note` (facultatif) |
 | `rules` | Conditions : `items[]`, `note` |
-| `features` | Avantages du produit : `items[{icon,title,text}]` (facultatif) |
+| `features` | Avantages du produit : `items[{icon,title,text}]`. **Facultatif, à éviter** : la page parle du code, pas du produit ; jamais d'affirmations financières |
 | `faq` | `items[{q,a}]` |
 | `finalCta`, `footer.disclaimer` | Appel à l'action final, mention légale |
 

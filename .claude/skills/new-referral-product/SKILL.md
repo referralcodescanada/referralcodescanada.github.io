@@ -28,7 +28,8 @@ It creates `../<slug>/` (engine + `publish: '<slug>'`, draft site copied from an
 Rewrite **everything** product-specific; see `docs/config-reference.md` for every field:
 - `brand` (name, `sameAs` official URL + Wikipedia if any), `referral` (code, url, bonus, minDeposit or 0, currency, `codeSpelled`), `lastVerified` / `firstPublished` = today.
 - `theme`: colors inspired by the product but **not** its logo or trademarked artwork; keep text contrast readable in light and dark.
-- `locales.en` and `locales.fr` (Canadian French): seo (title ≤ ~65 chars with code + bonus + `{year}`, description ≤ ~160), og, hub.summary, hero, mockup, facts, steps, existing, rules, features, faq (8–12 real questions people search, the first answering "What is the <brand> referral code?" directly), finalCta, footer disclaimer (independent, not affiliated, both parties get a bonus, not financial advice).
+- `locales.en` and `locales.fr` (Canadian French): seo (title ≤ ~65 chars with code + bonus + `{year}`, description ≤ ~160), og, hub.summary, hero, mockup, facts, steps, existing, rules, faq (8–12 real questions people search, the first answering "What is the <brand> referral code?" directly), finalCta, footer disclaimer (independent, not affiliated, both parties get a bonus, not financial advice).
+- `features` ("Why <brand>") is **optional and off by default**: the page is about the code, not marketing the product. Only add it if the user asks, with simple, easily verifiable perks — never financial claims (fees, returns, insurance/CIPF/CDIC, interest rates).
 - Remove any section that doesn't apply (e.g. `existing` if the code can't be added after sign-up) rather than inventing.
 Replace `assets/icon.svg` with a simple original 64×64 icon (rounded square, theme colors) — never the company logo.
 
