@@ -2,7 +2,7 @@
 
 Un seul dépôt Astro (`referralcodescanada.github.io`) publie tout le domaine `https://referralcodescanada.github.io/` : l'accueil, chaque produit sous `/<produit>/`, et les fichiers que les robots et les IA cherchent à la racine (`robots.txt`, `sitemap.xml`, `llms.txt`…). GitHub Actions construit le site à chaque push et chaque jour.
 
-> Avant octobre 2026, chaque produit avait son propre dépôt (`wealthsimple`, `fizz`) et un « moteur » copié entre eux. Ces dépôts sont archivés ; les adresses publiques n'ont pas changé.
+> Avant octobre 2026, chaque produit avait son propre dépôt (`wealthsimple`, `fizz`) et un « moteur » copié entre eux. Ces dépôts ont été supprimés ; les adresses publiques n'ont pas changé.
 
 ## Les trois questions : quoi, comment, où
 

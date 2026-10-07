@@ -32,16 +32,9 @@ GitHub Actions (`.github/workflows/deploy.yml`) construit et publie en 1 à 2 mi
 - **Plusieurs comptes GitHub sur le poste** : le `referralcodescanada@` dans l'URL force le gestionnaire d'identifiants à utiliser ce compte. En cas de 403, *Sign in with a code* dans une fenêtre privée connectée à **referralcodescanada**.
 - **`http.sslBackend schannel`** : le réseau de l'entreprise inspecte le SSL ; `schannel` utilise les certificats Windows. La vérification reste active.
 
-## Migration vers le dépôt unique (octobre 2026) — une seule fois
+## Migration vers le dépôt unique (faite le 7 octobre 2026)
 
-1. Pousser ce dépôt (il contient maintenant l'accueil **et** les produits).
-2. Sur GitHub, dans chacun des dépôts **`wealthsimple`** et **`fizz`** :
-   1. **Actions → Deploy to GitHub Pages → ⋯ → Disable workflow** (sinon la reconstruction quotidienne le republierait).
-   2. **Settings → Pages → Unpublish site**. Tant que leur Pages est actif, ils continuent de répondre sur `/wealthsimple/` et `/fizz/` à la place de ce dépôt.
-3. Attendre quelques minutes, puis `npm run check` : toutes les lignes doivent être ✔.
-4. Archiver ces deux dépôts : **Settings → Archive this repository** (réversible). Les dossiers locaux `D:\referalcodescanada\wealthsimple` et `fizz` peuvent ensuite être supprimés.
-
-Rien ne change pour Google : mêmes adresses, même propriété Search Console, même sitemap.
+Les anciens dépôts `wealthsimple` et `fizz` ont été **supprimés** : tant qu'un dépôt nommé comme un produit a GitHub Pages configuré (même « dépublié »), GitHub lui réserve l'adresse `/<produit>/` et affiche « Site not found ». **Ne jamais recréer un dépôt portant le nom d'un produit** (`wealthsimple`, `fizz`, …) sur ce compte.
 
 ## Problèmes connus
 
@@ -49,6 +42,6 @@ Rien ne change pour Google : mêmes adresses, même propriété Search Console, 
 | --- | --- |
 | Le build échoue avec `[content] … is invalid` ou `unknown placeholder` | Le message nomme le fichier et le champ : corriger, `npm run build` en local |
 | `Get Pages site failed` / 404 sur tout le site | Pages pas activé, ou Source ≠ GitHub Actions → activer, puis *Re-run jobs* |
-| `/wealthsimple/` affiche l'ancienne version | Pages encore actif dans l'ancien dépôt `wealthsimple` → *Unpublish site* (voir migration) |
+| `/<produit>/` affiche « Site not found · GitHub Pages » | Un dépôt du compte porte le nom du produit et a Pages configuré → le renommer ou le supprimer |
 | `self-signed certificate in certificate chain` au push | `git config http.sslBackend schannel` |
 | Push refusé (403) | Mauvais compte autorisé → URL avec `referralcodescanada@`, reconnexion via fenêtre privée |

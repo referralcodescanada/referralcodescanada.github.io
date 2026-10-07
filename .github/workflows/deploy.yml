@@ -33,7 +33,7 @@ jobs:
       # Content is validated here: an invalid product or guide file stops the deploy.
       - name: Build site
         run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -45,7 +45,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   # Only on real changes (push / manual run): IndexNow asks not to resubmit unchanged pages daily.
   indexnow:

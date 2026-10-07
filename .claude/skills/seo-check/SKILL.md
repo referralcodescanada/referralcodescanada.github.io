@@ -11,7 +11,7 @@ npm run check
 ```
 Every line must be ✔. Typical fixes:
 - 404 on a page or file → the last deploy failed (Actions tab) or Pages Source isn't "GitHub Actions" (see `docs/publishing.md`); GitHub caches ~10 min after a deploy, re-run before concluding.
-- A product page shows an old version → its former repo (`wealthsimple`, `fizz`) still has Pages published: unpublish it (`docs/publishing.md`, migration).
+- A product page shows "Site not found · GitHub Pages" → a repo of the account is named like the product and has Pages configured: rename or delete it (`docs/publishing.md`).
 - Sitemap missing/extra pages → rebuild and redeploy.
 
 ## 2. Content review (per product)
